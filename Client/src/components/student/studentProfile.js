@@ -42,6 +42,7 @@ const StudentProfile = () => {
         graduatingYear: '',
         city: '',
         state: '',
+        rollNo: '',
         studyYear: '',
         major: '',
         skills: [],
@@ -61,6 +62,7 @@ const StudentProfile = () => {
     };
     const contactDefault = {
         email: '',
+        collegeEmail: '',
         mobile: '',
         currentAddress: '',
         permanentAddress: ''
@@ -177,6 +179,7 @@ const StudentProfile = () => {
                     ...previousEducation,
                     percentage: parseInt(previousEducation.percentage)
                 },
+                rollNo: currentEducation.rollNo,
                 academicId: currentEducation.academicId
             });
             const success = response?.data?.success;
@@ -719,6 +722,22 @@ const StudentProfile = () => {
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
+                                                <input
+                                                    id='conce'
+                                                    className="form-control"
+                                                    type="email"
+                                                    placeholder='College email'
+                                                    autoComplete='off'
+                                                    value={contact.collegeEmail}
+                                                    onChange={(e) => setContact(prev => ({ ...prev, collegeEmail: e.target.value }))}
+                                                    required
+                                                />
+                                                <label htmlFor='conce'>College email</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="card-body">
+                                            <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='conec'
                                                     className="form-control"
@@ -979,6 +998,22 @@ const StudentProfile = () => {
                                                         required
                                                     />
                                                     <label htmlFor='cm'>Major</label>
+                                                </div>
+                                            </div>
+
+                                            <div className="card-body">
+                                                <div className="flex-nowrap form-floating">
+                                                    <input
+                                                        id='cr'
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder='Roll No.'
+                                                        autoComplete='off'
+                                                        value={currentEducation.rollNo}
+                                                        onChange={(e) => setCurrentEducation(prev => ({ ...prev, rollNo: e.target.value }))}
+                                                        required
+                                                    />
+                                                    <label htmlFor='cr'>Roll No.</label>
                                                 </div>
                                             </div>
 
@@ -1736,7 +1771,7 @@ const StudentProfile = () => {
 
                             <fieldset>
 
-                                <h2>Work</h2>
+                                <h2>New Work</h2>
 
                                 <div className='d-flex flex-row'>
                                     <div>

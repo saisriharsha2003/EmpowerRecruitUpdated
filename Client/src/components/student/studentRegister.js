@@ -19,6 +19,7 @@ const StudentRegister = () => {
         graduatingYear: '',
         city: '',
         state: '',
+        rollNo: '',
         studyYear: '',
         major: '',
         skills: [],
@@ -38,6 +39,7 @@ const StudentRegister = () => {
     };
     const contactDefault = {
         email: '',
+        collegeEmail: '',
         mobile: '',
         currentAddress: '',
         permanentAddress: ''
@@ -88,7 +90,8 @@ const StudentRegister = () => {
                 previousEducation: {
                     ...previousEducation,
                     percentage: parseInt(previousEducation.percentage)
-                }
+                },
+                rollNo: currentEducation.rollNo
             });
             const success = response?.data?.success;
             if (success)
@@ -391,6 +394,22 @@ const StudentRegister = () => {
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
+                                                <input
+                                                    id='conce'
+                                                    className="form-control"
+                                                    type="email"
+                                                    placeholder='College email'
+                                                    autoComplete='off'
+                                                    value={contact.collegeEmail}
+                                                    onChange={(e) => setContact(prev => ({ ...prev, collegeEmail: e.target.value }))}
+                                                    required
+                                                />
+                                                <label htmlFor='conce'>College email</label>
+                                            </div>
+                                        </div>
+
+                                        <div className="card-body">
+                                            <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='conec'
                                                     className="form-control"
@@ -607,6 +626,22 @@ const StudentRegister = () => {
                                                         required
                                                     />
                                                     <label htmlFor='cm'>Major</label>
+                                                </div>
+                                            </div>
+
+                                            <div className="card-body">
+                                                <div className="flex-nowrap form-floating">
+                                                    <input
+                                                        id='cr'
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder='Roll No.'
+                                                        autoComplete='off'
+                                                        value={currentEducation.rollNo}
+                                                        onChange={(e) => setCurrentEducation(prev => ({ ...prev, rollNo: e.target.value }))}
+                                                        required
+                                                    />
+                                                    <label htmlFor='cr'>Roll No.</label>
                                                 </div>
                                             </div>
 

@@ -176,7 +176,7 @@ const StudentJobProfile = () => {
                         </div>
                     </section>
 
-                </section >
+                </section>
 
                 <section className="card mx-5 p-3" style={{ width: '30rem' }}>
 

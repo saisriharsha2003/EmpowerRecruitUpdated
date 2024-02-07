@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
 
@@ -9,11 +9,27 @@ const RecruiterOpening = () => {
         description: '',
         experience: '',
         seats: '',
-        package: ''
+        package: '',
+        applicationFor: '',
     }
 
     const axios = useAxiosPrivate();
     const [job, setJob] = useState(jobDefault);
+    const [colleges, setColleges] = useState([]);
+
+    useEffect(() => {
+        const fetchColleges = async () => {
+            try {
+                const response = await axios.get('/recruiter/colleges');
+
+                const colleges = response?.data;
+                setColleges(colleges);
+            } catch (err) {
+                notify('failed', err?.response?.data?.message);
+            }
+        }
+        fetchColleges();
+    }, [axios]);
 
     const handleJob = async (e) => {
         e.preventDefault();
@@ -94,6 +110,19 @@ const RecruiterOpening = () => {
                                                 required
                                             />
                                             <label htmlFor='jd'>Description</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="form-floating flex-nowrap">
+                                            <select id='application' required className="form-select" value={job.applicationFor} onChange={(e) => setJob(prev => ({ ...prev, applicationFor: e.target.value }))}>
+                                                <option defaultValue=''></option>
+                                                <option value='Everyone'>Everyone</option>
+                                                {colleges.map((college, index) => (
+                                                    <option key={index} value={college}>{college}</option>
+                                                ))}
+                                            </select>
+                                            <label htmlFor='application'>Application for</label>
                                         </div>
                                     </div>
                                 </div>

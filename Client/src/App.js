@@ -17,6 +17,13 @@ import RecruiterRegister from './components/recruiter/recruiterRegister';
 import CollegeLayout from './components/college/collegeLayout';
 import CollegeRegister from "./components/college/collegeRegister";
 import CollegeProfile from './components/college/collegeProfile';
+import CollegeDashboard from "./components/college/collegeDashboard";
+import CollegeCompanies from "./components/college/collegeCompanies";
+import CollegeCompanyProfile from "./components/college/collegeCompanyProfile";
+import CollegeSections from "./components/college/collegeSections";
+import CollegeDrives from "./components/college/collegeDrives";
+import CollegeDriveProfile from "./components/college/collegeDriveProfile";
+import CollegeStudents from "./components/college/collegeStudents";
 import AdminLayout from './components/admin/adminLayout';
 import AdminDashboard from "./components/admin/adminDashboard";
 import AdminStudents from "./components/admin/adminStudents";
@@ -68,6 +75,13 @@ const App = () => {
             </Route>
 
             <Route path="college/" element={<CollegeLayout />}>
+              <Route index element={<CollegeDashboard />} />
+              <Route path="companies" element={<CollegeCompanies />} />
+              <Route path="companies/:id" element={<CollegeCompanyProfile />} />
+              <Route path="sections" element={<CollegeSections />} />
+              <Route path="sections/:course/:id" element={<CollegeStudents />} />
+              <Route path="drives" element={<CollegeDrives />} />
+              <Route path="drives/:id" element={<CollegeDriveProfile />} />
               <Route path="profile" element={<CollegeProfile />} />
             </Route>
 
