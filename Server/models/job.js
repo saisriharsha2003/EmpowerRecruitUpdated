@@ -6,6 +6,14 @@ const jobSchema = new Schema({
         type: String,
         required: true
     },
+    applicationFor: {
+        type: String,
+        required: true
+    },
+    collegeApproved: {
+        type: Boolean,
+        required: true
+    },
     jobRole: {
         type: String,
         required: true

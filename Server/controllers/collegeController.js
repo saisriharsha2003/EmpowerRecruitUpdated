@@ -3,6 +3,38 @@ const Institution = require('../models/college/institution');
 const Principal = require('../models/college/principal');
 const Placement = require('../models/college/placement');
 const Course = require('../models/college/course');
+const Student = require('../models/student');
+const Recruiter = require('../models/recruiter');
+const Job = require('../models/job');
+const Academic = require('../models/student/academic');
+
+const getDashboard = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundCollege = await College.findById(id).populate('institution').exec();
+        if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const foundSelectedStudents = await Student.find({ jobsSelected: { $gt: 0 } }).exec();
+        const foundOngoingDrives = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: true }).exec();
+        const foundUpcomingDrives = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: false }).exec();
+        const foundRegisteredRecruiters = await Job.distinct('recruiter', { collegeApproved: true, applicationFor: foundCollege.institution.name }).exec();
+
+        const foundProfile = await College.findById(id).select('logo').exec();
+        if (!foundProfile) return res.status(401).json({ 'message': 'unauthorized' });
+
+        res.json({
+            selectedStudents: foundSelectedStudents.length,
+            ongoingDrives: foundOngoingDrives.length,
+            upcomingDrives: foundUpcomingDrives.length,
+            registeredCompanies: foundRegisteredRecruiters.length,
+            profile: foundProfile.logo,
+            username: foundCollege.username
+        })
+    }
+    catch (err) {
+        next(err);
+    }
+}
 
 const getCollege = async (req, res, next) => {
     const { id } = req;
@@ -31,6 +63,127 @@ const getProfile = async (req, res, next) => {
         if (!foundProfile) return res.status(401).json({ 'message': 'unauthorized' });
 
         res.json(foundProfile.logo);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getCompanies = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundCollege = await College.findById(id).populate('institution').exec();
+        if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const recruiterIds = await Job.distinct('recruiter', { collegeApproved: true, applicationFor: foundCollege.institution.name }).exec();
+        const foundRecruiters = await Recruiter.find({ _id: { $in: recruiterIds } }).populate('company').exec();
+
+        res.json(foundRecruiters);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getCompany = async (req, res, next) => {
+    const { recruiterId } = req.params;
+    try {
+        const foundRecruiter = await Recruiter.findById(recruiterId).populate('recruiterDetail').populate('company').exec();
+        if (!foundRecruiter) return res.status(404).json({ 'message': 'Recruiter details not found' });
+
+        res.json(foundRecruiter);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getCourses = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundCourses = await College.findById(id).populate('programs').select('programs').exec();
+        if (!foundCourses) return res.status(401).json({ 'message': 'unauthorized' });
+
+        res.json(foundCourses);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getStudents = async (req, res, next) => {
+    const { id } = req;
+    const { courseId } = req.params;
+    if (!courseId) return res.status(400).json({ 'message': 'Course is required' });
+    try {
+        const foundCollege = await College.findById(id).populate('institution').exec();
+        if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const foundCourse = await Course.findById(courseId).exec();
+        if (!foundCourse) return res.status(404).json({ 'message': 'Course details not found' });
+
+        const foundAcademics = await Academic.find({ 'currentEducation.college': foundCollege.institution.name, 'currentEducation.course': foundCourse.name }).exec();
+        const userIds = foundAcademics.map(a => a.userId);
+        const foundStudents = await Student.find({ _id: { $in: userIds } })
+            .populate('personal')
+            .populate('academic')
+            .populate('contact')
+            .select('personal academic contact rollNo')
+            .exec();
+
+        res.json(foundStudents)
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getDrives = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundCollege = await College.findById(id).populate('institution').exec();
+        if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const foundApprovedJobs = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: true }).select('jobRole description companyName').exec();
+        const foundNotApprovedJobs = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: false }).select('jobRole description companyName').exec();
+
+        res.json({
+            approved: foundApprovedJobs,
+            pending: foundNotApprovedJobs
+        });
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getJob = async (req, res, next) => {
+    const { jobId } = req.params;
+    try {
+        const foundJob = await Job.findById(jobId).exec();
+        if (!foundJob) return res.status(404).json({ 'message': 'Job details not found' });
+
+        res.json(foundJob);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const postJob = async (req, res, next) => {
+    const { id } = req;
+    const { jobId } = req.params;
+    try {
+        const foundCollege = await College.findById(id).populate('institution').exec();
+        if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const foundJob = await Job.findById(jobId).exec();
+        if (foundJob.applicationFor !== foundCollege.institution.name) return res.status(401).json({ 'message': 'Unauthorized' });
+
+        foundJob.collegeApproved = true;
+        await foundJob.save();
+
+        res.json({ 'success': 'Job application approved' });
     }
     catch (err) {
         next(err);
@@ -307,8 +460,16 @@ const deleteCourse = async (req, res, next) => {
 }
 
 module.exports = {
+    getDashboard,
     getCollege,
     getProfile,
+    getCompanies,
+    getCompany,
+    getCourses,
+    getStudents,
+    getDrives,
+    getJob,
+    postJob,
     postInstitution,
     postPrincipal,
     postPlacement,

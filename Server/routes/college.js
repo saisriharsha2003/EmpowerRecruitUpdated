@@ -6,9 +6,25 @@ const { profileUpload } = require('../middleware/upload');
 
 router.use(verifyRole('college'));
 
+router.get('/$', collegeController.getDashboard);
+
 router.get('/details$', collegeController.getCollege);
 
 router.get('/profile$', collegeController.getProfile);
+
+router.get('/companies', collegeController.getCompanies);
+
+router.get('/company/:recruiterId', collegeController.getCompany);
+
+router.get('/courses', collegeController.getCourses);
+
+router.get('/students/:courseId', collegeController.getStudents);
+
+router.get('/drives', collegeController.getDrives);
+
+router.get('/job/:jobId', collegeController.getJob);
+
+router.post('/job/:jobId', collegeController.postJob);
 
 router.post('/institution$', collegeController.postInstitution);
 

@@ -8,6 +8,8 @@ router.use(verifyRole('recruiter'));
 
 router.get('/$', recruiterController.getDashboard);
 
+router.get('/colleges', recruiterController.getColleges);
+
 router.get('/jobs$', recruiterController.getJobs);
 
 router.get('/jobProfile/:jobId', recruiterController.getJobProfile);

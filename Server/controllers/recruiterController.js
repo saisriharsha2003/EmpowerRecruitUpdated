@@ -4,6 +4,7 @@ const Company = require('../models/recruiter/company');
 const Recruiter = require('../models/recruiter');
 const AppliedJob = require('../models/student/appliedJob');
 const Student = require('../models/student');
+const College = require('../models/college');
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
@@ -35,6 +36,18 @@ const getDashboard = async (req, res, next) => {
         }
 
         res.json(response);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const getColleges = async (req, res, next) => {
+    try {
+        const foundColleges = await College.find({}).populate('institution').exec();
+        const colleges = foundColleges.map(c => c.institution?.name).filter(c => c);
+
+        res.json(colleges);
     }
     catch (err) {
         next(err);
@@ -204,8 +217,9 @@ const getNotifications = async (req, res, next) => {
 
 const postNewJob = async (req, res, next) => {
     const { id } = req;
-    const { jobRole, cgpa, description, experience, seats, package } = req.body;
+    const { jobRole, applicationFor, cgpa, description, experience, seats, package } = req.body;
     if (!jobRole || !cgpa || !description || !experience || !seats || !package) return res.status(400).json({ 'message': 'All fields required' });
+    if (!applicationFor) applicationFor = 'Everyone';
     try {
         const foundRecruiter = await Recruiter.findById(id).populate('company').exec();
         if (!foundRecruiter) return res.status(401).json({ 'message': 'unauthorized' });
@@ -213,11 +227,13 @@ const postNewJob = async (req, res, next) => {
         const query = await Job.create({
             companyName: foundRecruiter.company.name,
             jobRole,
+            applicationFor,
             cgpa,
             description,
             experience,
             seats,
             package,
+            collegeApproved: false,
             recruiter: id
         });
 
@@ -428,6 +444,7 @@ const deleteJob = async (req, res, next) => {
 
 module.exports = {
     getDashboard,
+    getColleges,
     getJobs,
     getJobProfile,
     getStudentProfile,

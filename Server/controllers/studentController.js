@@ -23,10 +23,10 @@ const transporter = nodemailer.createTransport({
 const getDashboard = async (req, res, next) => {
     const { user } = req;
     try {
-        const foundStudent = await Student.findOne({ username: user }).select('jobsSelected jobsApplied jobsRejected profile username').exec();
+        const foundStudent = await Student.findOne({ username: user }).populate('academic').select('jobsSelected jobsApplied jobsRejected profile username academic').exec();
         if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
 
-        const foundJobs = await Job.find({}).exec()
+        const foundJobs = await Job.find({ applicationFor: { $in: ['Everyone', foundStudent.academic.currentEducation.college] }, collegeApproved: { $ne: false } }).exec()
 
         const dashboard = { ...foundStudent, openings: foundJobs.length, profile: foundStudent.profile };
 
@@ -60,8 +60,12 @@ const getStudent = async (req, res, next) => {
 }
 
 const getJobs = async (req, res, next) => {
+    const { id } = req;
     try {
-        const foundJobs = await Job.find({})
+        const foundStudent = await Student.findById(id).populate('academic').exec();
+        if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const foundJobs = await Job.find({ applicationFor: { $in: ['Everyone', foundStudent.academic.currentEducation.college] }, collegeApproved: { $ne: false } })
             .select('companyName jobRole description')
             .exec();
 
@@ -182,8 +186,8 @@ const postAppliedJob = async (req, res, next) => {
 }
 
 const postAcademic = async (req, res, next) => {
-    const { currentEducation, previousEducation } = req.body;
-    if (!currentEducation || !previousEducation) return res.status(400).json({ 'message': 'All fields required' });
+    const { currentEducation, previousEducation, rollNo } = req.body;
+    if (!currentEducation || !previousEducation || !rollNo) return res.status(400).json({ 'message': 'All fields required' });
 
     const { id } = req;
     try {
@@ -200,6 +204,7 @@ const postAcademic = async (req, res, next) => {
         });
 
         foundStudent.academic = query._id;
+        foundStudent.rollNo = rollNo;
         await foundStudent.save();
 
         res.status(201).json({ 'success': 'Academic info added' });
@@ -235,8 +240,8 @@ const postCertification = async (req, res, next) => {
 }
 
 const postContact = async (req, res, next) => {
-    const { email, mobile, currentAddress, permanentAddress } = req.body;
-    if (!email || !mobile || !currentAddress || !permanentAddress) return res.status(400).json({ 'message': 'All fields required' });
+    const { email, collegeEmail, mobile, currentAddress, permanentAddress } = req.body;
+    if (!email || !collegeEmail || !mobile || !currentAddress || !permanentAddress) return res.status(400).json({ 'message': 'All fields required' });
 
     const { id } = req;
     try {
@@ -254,6 +259,7 @@ const postContact = async (req, res, next) => {
 
         const query = await Contact.create({
             email,
+            collegeEmail,
             mobile,
             currentAddress,
             permanentAddress,
@@ -406,8 +412,8 @@ const postWork = async (req, res, next) => {
 }
 
 const putAcademic = async (req, res, next) => {
-    const { currentEducation, previousEducation, academicId } = req.body;
-    if (!currentEducation || !previousEducation || !academicId) return res.status(400).json({ 'message': 'All fields required' });
+    const { currentEducation, previousEducation, rollNo, academicId } = req.body;
+    if (!currentEducation || !previousEducation || !rollNo || !academicId) return res.status(400).json({ 'message': 'All fields required' });
 
     const { id } = req;
     try {
@@ -421,6 +427,8 @@ const putAcademic = async (req, res, next) => {
 
         foundAcademic.currentEducation = currentEducation;
         foundAcademic.previousEducation = previousEducation;
+        foundStudent.rollNo = rollNo;
+        await foundStudent.save();
         await foundAcademic.save();
 
         res.status(201).json({ 'success': 'Academic info updated' });
@@ -456,8 +464,8 @@ const putCertification = async (req, res, next) => {
 }
 
 const putContact = async (req, res, next) => {
-    const { email, mobile, currentAddress, permanentAddress, contactId } = req.body;
-    if (!email || !mobile || !currentAddress || !permanentAddress || !contactId) return res.status(400).json({ 'message': 'All fields required' });
+    const { email, collegeEmail, mobile, currentAddress, permanentAddress, contactId } = req.body;
+    if (!email || !collegeEmail || !mobile || !currentAddress || !permanentAddress || !contactId) return res.status(400).json({ 'message': 'All fields required' });
 
     const { id } = req;
     try {
@@ -477,6 +485,7 @@ const putContact = async (req, res, next) => {
 
         foundContact.currentAddress = currentAddress;
         foundContact.permanentAddress = permanentAddress;
+        foundContact.collegeEmail = collegeEmail;
 
         if (foundContact.email !== email) {
             foundContact.email = email;

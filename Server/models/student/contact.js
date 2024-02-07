@@ -6,6 +6,10 @@ const contactSchema = new Schema({
         type: String,
         required: true
     },
+    collegeEmail: {
+        type: String,
+        required: true
+    },
     mobile: {
         type: Number,
         required: true,
