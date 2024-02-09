@@ -74,7 +74,7 @@
 
 .outlet {
     width: 100%;
-    max-height: 44.2rem;
+    max-height: 92vh;
     overflow-y: auto;
 }
 
@@ -86,11 +86,12 @@
 }
 
 .sidebar {
-    width: 15rem;
-    min-width: 15rem;
+    width: 20vw;
+    min-width: 15vw;
     background: #2d2d2d;
     color: #fff;
-    min-height: 90vh;
+    height: 92vh;
+    min-height: 92vh;
     transition: all 0.3s;
 }
 
@@ -101,10 +102,6 @@
 .sidebar .sidebar-header {
     padding: 20px;
     background: #222222;
-}
-
-.sidebar {
-    height: 44.2rem;
 }
 
 .sidebar ul li {
