@@ -84,7 +84,7 @@ const CollegeProfile = () => {
                 const response = await axios.get('/college/details')
 
                 const college = response?.data
-                if (!college?.institution || !college?.principal || !college?.placement || !college?.programs.length)
+                if (!college?.institution || !college?.principal || !college?.placement)
                     return navigate('/collegeRegister');
                 setInstitution(college?.institution);
                 setPrincipal(college?.principal);
