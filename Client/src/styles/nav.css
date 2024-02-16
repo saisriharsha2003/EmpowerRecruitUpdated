@@ -74,7 +74,7 @@
 
 .outlet {
     width: 100%;
-    max-height: 92vh;
+    max-height: 93vh;
     overflow-y: auto;
 }
 
@@ -90,8 +90,8 @@
     min-width: 15vw;
     background: #2d2d2d;
     color: #fff;
-    height: 92vh;
-    min-height: 92vh;
+    height: 93vh;
+    min-height: 93vh;
     transition: all 0.3s;
 }
 
