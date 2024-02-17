@@ -1174,7 +1174,7 @@ const StudentRegister = () => {
                 </div>
 
                 <div className='d-inline-flex p-2'>
-                    <Link className="btn btn-primary" to="/">Home</Link>
+                    <Link className="btn btn-primary" to="/student">Home</Link>
                 </div>
 
             </div>
