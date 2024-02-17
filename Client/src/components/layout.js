@@ -183,7 +183,7 @@ const Layout = () => {
                                         <Link className='nav-link active'>Match jobs</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/student/profile'>Profile</Link>
+                                        <Link className='nav-link active' to='/user/student/profil'>Profile</Link>
                                     </li>
                                 </ul>
                             )}
