@@ -539,7 +539,7 @@ const CollegeRegister = () => {
                 </div>
 
                 <div className='d-inline-flex p-2'>
-                    <Link className="btn btn-primary" to="/">Home</Link>
+                    <Link className="btn btn-primary" to="/college">Home</Link>
                 </div>
 
             </div>
