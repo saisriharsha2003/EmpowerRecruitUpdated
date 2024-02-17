@@ -70,7 +70,7 @@ const Layout = () => {
                 decoded = jwtDecode(accessToken);
             else return
             try {
-                setLink(decoded?.userInfo?.role);
+                setLink('/user/'+decoded?.userInfo?.role);
                 const response = await axiosP.get(`/${decoded?.userInfo?.role}/profile`);
 
                 const photo = response?.data
