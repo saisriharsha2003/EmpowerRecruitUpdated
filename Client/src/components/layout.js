@@ -13,6 +13,7 @@ const Layout = () => {
     const [notifications, setNotifications] = useState([]);
     const [newN, setNewN] = useState(false);
     const [interval, setinterval] = useState();
+    const [link,setLink]=useState('/');
 
     const accessToken = localStorage.getItem('accessToken');
     let decoded;
@@ -63,12 +64,13 @@ const Layout = () => {
     }, []);
 
     useEffect(() => {
-        const fetchCollege = async () => {
+        const fetchProfile = async () => {
             let decoded;
             if (accessToken)
                 decoded = jwtDecode(accessToken);
             else return
             try {
+                setLink(decoded?.userInfo?.role);
                 const response = await axiosP.get(`/${decoded?.userInfo?.role}/profile`);
 
                 const photo = response?.data
@@ -79,7 +81,7 @@ const Layout = () => {
                 notify('failed', err?.response?.data?.message);
             }
         }
-        fetchCollege();
+        fetchProfile();
     }, [accessToken, axiosP]);
 
     const logout = async () => {
@@ -88,6 +90,7 @@ const Layout = () => {
             const decoded = jwtDecode(accessToken);
             await axios.post('/logout', { role: decoded.userInfo.role })
             localStorage.removeItem('accessToken');
+            setProfile('');
             const i = interval;
             clearInterval(i)
             notify('success', 'Successfully logged out');
@@ -102,7 +105,7 @@ const Layout = () => {
             <nav className="navbar px-2" data-bs-theme="dark" style={{ backgroundColor: '#0f172a' }}>
                 <div className="container-fluid">
                     <div className='d-flex align-items-center'>
-                        <Link className="navbar-brand mx-1 fs-3" to="/">Talent trail</Link>
+                        <Link className="navbar-brand mx-1 fs-3" to={link || "/"}>Talent trail</Link>
                     </div>
                     <ul className="navbar-nav d-flex flex-row align-items-center">
                         {!decoded?.userInfo?.username
