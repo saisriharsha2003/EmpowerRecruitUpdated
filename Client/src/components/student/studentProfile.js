@@ -1909,7 +1909,7 @@ const StudentProfile = () => {
                             <div className="card-body">
                                 <div className="flex-nowrap">
                                     <label htmlFor="resume" className="form-label"><b>Resume</b></label>&rarr;
-                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume.slice(13,)}</a>
+{resume&&(<a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume.slice(13,)}</a>)}
                                     <input
                                         className="form-control"
                                         type="file"
