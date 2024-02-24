@@ -100,6 +100,7 @@ const App = () => {
 
         </Route>
       </Routes>
+      
     </>
   );
 }

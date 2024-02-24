@@ -6,6 +6,8 @@ import { notify } from './toast';
 import '../styles/nav.css'
 import React, { useEffect, useState } from 'react';
 
+
+
 const Layout = () => {
     const navigate = useNavigate();
     const axiosP = useAxiosPrivate();
@@ -102,18 +104,22 @@ const Layout = () => {
 
     return (
         <>
+        
             <nav className="navbar px-2" data-bs-theme="dark" style={{ backgroundColor: '#0f172a' }}>
+            <link rel="preconnect" href="https://fonts.googleapis.com"/>
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+            <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
                 <div className="container-fluid">
                     <div className='d-flex align-items-center'>
-                        <Link className="navbar-brand mx-1 fs-3" to={link || "/"}>Talent trail</Link>
+                        <Link className="navbar-brand mx-5 fs-3 pacifico-regular" to={link || "/"}>Talentrail</Link>    
                     </div>
                     <ul className="navbar-nav d-flex flex-row align-items-center">
                         {!decoded?.userInfo?.username
                             ? <>
-                                <li className="nav-item mx-1"><a className="nav-link" href="#iirxi">Features</a></li>
-                                <li className="nav-item mx-1"><a className="nav-link" href="#footer">Contact</a></li>
-                                <li className="nav-item mx-1"><Link className="nav-link" to="/login">Login</Link></li>
-                                <li className="nav-item mx-1"><Link className="nav-link" to="/signup">Signup</Link></li>
+                                <li className="nav-item mx-md-3 mx-lg-4"><a className="nav-link" href="#iirxi">Features</a></li>
+                                <li className="nav-item mx-md-3 mx-lg-4"><a className="nav-link" href="#footer">Contact</a></li>
+                                <li className="nav-item mx-md-3 mx-lg-4"><Link className="nav-link" to="/login">Login</Link></li>
+                                <li className="nav-item mx-md-3 mx-lg-4"><Link className="nav-link" to="/signup">Signup</Link></li>
                             </>
                             : <>
                                 <li className="nav-item mx-1">

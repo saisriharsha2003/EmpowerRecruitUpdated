@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from '../api/axios';
 import '../styles/form.css';
 import { notify } from './toast';
@@ -12,7 +12,17 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
+    useEffect(() => {
+        const storedAcctype = localStorage.getItem('acctype');
+        if (storedAcctype) {
+            // Clear the 'acctype' value from local storage
+            localStorage.removeItem('acctype');
+            // Set the 'acctype' value in the component state
+            setRole(storedAcctype)
+        }
 
+    }, [])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -35,13 +45,19 @@ const Login = () => {
     return (
         <>
             <div className='form'>
-                <div className='d-inline-flex'>
-                    <div className="card" style={{ backgroundColor: '#fff', width: '400px' }}>
-                        <form className="card-body" onSubmit={handleSubmit}>
-
-                            <h2>Login</h2>
+                <div className='d-inline-flex ' id="ikel">
+                    <div className="card" style={{ backgroundColor: '#fff', width: '500px'}} id="imsf">
+                            <form className="card" onSubmit={handleSubmit} id="is53">
 
                             <div className="card-body">
+                                <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                                    <span className="navbar-brand fs-1 pacifico-regular" to={"/"}>Talentrail</span>  
+                                </a>
+                                <div id="i5mdc" class="col-12 col-md-12 mb-4">
+                                    <h4 id="i3nki" class="title">Sign in</h4>
+                                    <div id="i58zc">Don't have an account? </div>
+                                    <a data-selected-page-collection="" target="" href="/signup" id="itmob">Sign Up</a> 
+                                </div>
                                 <div className="form-floating flex-nowrap">
                                     <input
                                         className="form-control"
@@ -75,8 +91,8 @@ const Login = () => {
 
                             <div className="card-body">
                                 <div className="form-floating flex-nowrap">
-                                    <select id='role' required className="form-select" value={role} onChange={(e) => setRole(e.target.value)}>
-                                        <option defaultValue=''></option>
+                                    <select id='role' required className="form-select" value={role} defaultValue={role} onChange={(e) => setRole(e.target.value)}>
+                                        <option defaultValue>{role}</option>
                                         <option value='admin'>Admin</option>
                                         <option value='student'>Student</option>
                                         <option value='recruiter'>Recruiter</option>
@@ -87,15 +103,15 @@ const Login = () => {
                             </div>
 
                             <div className="card-body">
-                                <button type="submit" className="btn btn-primary" >Login</button>
+                                <button role="button" type="submit" id="iq8qg" class="btn btn-primary rounded-pill text-centered"><strong>Sign In</strong></button>                            
                             </div>
 
                         </form>
                     </div>
 
-                    <div id="ihnx5" style={{ width: '400px' }} className="d-flex flex-column text-wrap">
-                        <h1 id="iwymk">Welcome To Talent Trail</h1>
-                        <p id="ioe5g">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p>
+                    <div id="ihnx5" style={{ width: '400px'}} className="d-flex flex-column text-wrap">
+                        <h1 id="iwymk">Welcome To Talentrail</h1>
+                        <p id="ioe5g">TalenTrail India is a pioneering initiative addressing the employability challenge in India's higher educational institutions. By consolidating placement data from across the nation, TalenTrail India provides policymakers with invaluable insights to enhance employability across diverse educational domains.</p>
                     </div>
                 </div>
             </div>

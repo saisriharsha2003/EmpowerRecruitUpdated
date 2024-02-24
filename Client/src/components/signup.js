@@ -42,12 +42,16 @@ const Signup = () => {
         <>
             <div className='form'>
                 <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff', width: '400px' }}>
+                    <div className="card" style={{ backgroundColor: '#fff', width: '500px' }}>
                         <form className="card-body" onSubmit={handleSubmit}>
 
-                            <h2>Signup</h2>
-
                             <div className="card-body">
+                            <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+                                    <span className="navbar-brand fs-1 pacifico-regular" to={"/"}>Talentrail</span>  
+                                </a>
+                                <div id="i5mdc" class="col-12 col-md-12 mb-4">
+                                    <h2 id="i3nki" class="title">Sign Up</h2>
+                                </div>
                                 <div className="form-floating flex-nowrap">
                                     <input
                                         className="form-control"
@@ -112,15 +116,15 @@ const Signup = () => {
                             </div>
 
                             <div className="card-body">
-                                <button type="submit" className="btn btn-primary">Sign up</button>
+                                <button role="button" type="submit" id="iq8qg" class="btn btn-primary rounded-pill text-centered"><strong>Sign Up</strong></button>                            
                             </div>
 
                         </form>
                     </div>
 
                     <div id="ihnx5" style={{ width: '400px' }} className="d-flex flex-column text-wrap">
-                        <h1 id="iwymk">Welcome To Talent Trail</h1>
-                        <p id="ioe5g">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.</p>
+                        <h1 id="iwymk">Welcome To Talentrail</h1>
+                        <p id="ioe5g">Talentrail India is a groundbreaking platform addressing the employability challenge in higher education. By analyzing placement data nationwide, we empower policymakers with insights to enhance graduate employability. For recruiters, our extensive database streamlines talent sourcing. Join us in shaping India's skill-driven future.</p>
                     </div>
                 </div>
             </div>
