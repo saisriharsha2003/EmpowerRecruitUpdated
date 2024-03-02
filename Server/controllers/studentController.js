@@ -9,7 +9,7 @@ const Job = require('../models/job');
 const AppliedJob = require('../models/student/appliedJob');
 const Company = require('../models/recruiter/company');
 const Recruiter = require('../models/recruiter');
-const fs = require('fs').promises;
+const fs = require('fs');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
 // const FormData = require("form-data");
@@ -343,43 +343,25 @@ const parseResume = async (req, res, next) => {
         if (!req.file) return res.status(400).json({ 'message': 'Only pdf or docx are allowed which are less than 2 mb' });
         // console.log(req)
         const resumeFile = req.file; // Access the buffer of the uploaded file
-        // console.log(resumeFile)
         const formData = new FormData();
-        formData.append('resumenergpt', new Blob([req.file.buffer], { type: resumeFile.mimetype }), resumeFile.originalname); // Append the blob with a filename
+        let buf = fs.readFileSync("resumes/"+resumeFile.originalname);
+        formData.append('resumenergpt', new Blob([buf], { type: resumeFile.mimetype }), resumeFile.originalname); // Append the blob with a filename
+        const parsedOutput = await axios.post(process.env.RESUME_PARSER, formData).then((resp) => {
+            console.log(resp.data);
+            return resp.data;
+        }).catch((e) => {
+            console.log(e.data)
+            next(e);
+        })
 
-
-        
-        const scriptPath = 'controllers/resumeparse.py';
-        const file_path = "resumes/"+resumeFile.originalname;
-        const runPythonProcess = () => {
-            return new Promise((resolve, reject) => {
-                const pythonProcess = spawn('python3', [scriptPath, file_path]);
-                let parsedOutput = '';
-
-                pythonProcess.stdout.on('data', async (data) => {
-                    parsedOutput = await parseJsonData(data);
-                });
-
-                pythonProcess.stderr.on('data', (data) => {
-                    console.error(`Python script error (stderr): ${data.toString()}`);
-                });
-
-                pythonProcess.on('close', (code) => {
-                    console.log(`Python script exited with code: ${code}`);
-                    resolve(parsedOutput); // Resolve the Promise with parsedOutput
-                });
-            });
-        };
-
-        // Run the Python process and wait for the parsed output
-        const parsedOutput = await runPythonProcess();
-        console.log('Parsed JSON output:', parsedOutput)
+       
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
         res.setHeader("Access-Control-Max-Age", "1800");
         res.setHeader("Access-Control-Allow-Headers", "content-type");
         res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
-        res.status(201).json({ success: 'Resume processed successfully \nPlease Fill out remaining fields', parsedOutput });
+        res.status(201).json({ success: 'Resume processed successfully \nPlease fill out remaining fields', parsedOutput });
+
         
         // res.status(200).json({ success: 'Resume processed successfully' });
 
