@@ -11,6 +11,12 @@ const Company = require('../models/recruiter/company');
 const Recruiter = require('../models/recruiter');
 const fs = require('fs').promises;
 const nodemailer = require('nodemailer');
+const axios = require('axios');
+// const FormData = require("form-data");
+// const fetch = require('node-fetch');
+
+const { spawn } = require('child_process');
+
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -295,8 +301,10 @@ const postProfile = async (req, res, next) => {
 }
 
 const postResume = async (req, res, next) => {
+    console.log("In post resume")
     const { id } = req;
     try {
+        console.log("In post resume")
         const foundStudent = await Student.findById(id).exec();
         if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
 
@@ -308,6 +316,70 @@ const postResume = async (req, res, next) => {
         res.status(201).json({ 'success': 'Resume uploaded successfully' });
     }
     catch (err) {
+        console.log("error in postresume")
+        next(err);
+    }
+}
+
+const parseJsonData = async (data) => {
+    try {
+        const parsedData = JSON.parse(data.toString());
+        return parsedData
+
+        // Process parsed data here
+
+    } catch (error) {
+        console.error('Error parsing JSON:', error);
+    }
+};
+
+const parseResume = async (req, res, next) => {
+    const { id } = req;
+  
+    try {
+        const foundStudent = await Student.findById(id).exec();
+        if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
+
+        if (!req.file) return res.status(400).json({ 'message': 'Only pdf or docx are allowed which are less than 2 mb' });
+        // console.log(req)
+        const resumeFile = req.file; // Access the buffer of the uploaded file
+        // console.log(resumeFile)
+        const formData = new FormData();
+        formData.append('resumenergpt', new Blob([req.file.buffer], { type: resumeFile.mimetype }), resumeFile.originalname); // Append the blob with a filename
+
+
+        
+        const scriptPath = 'controllers/resumeparse.py';
+        const file_path = "resumes/"+resumeFile.originalname;
+        const runPythonProcess = () => {
+            return new Promise((resolve, reject) => {
+                const pythonProcess = spawn('python3', [scriptPath, file_path]);
+                let parsedOutput = '';
+
+                pythonProcess.stdout.on('data', async (data) => {
+                    parsedOutput = await parseJsonData(data);
+                });
+
+                pythonProcess.stderr.on('data', (data) => {
+                    console.error(`Python script error (stderr): ${data.toString()}`);
+                });
+
+                pythonProcess.on('close', (code) => {
+                    console.log(`Python script exited with code: ${code}`);
+                    resolve(parsedOutput); // Resolve the Promise with parsedOutput
+                });
+            });
+        };
+
+        // Run the Python process and wait for the parsed output
+        const parsedOutput = await runPythonProcess();
+        console.log('Parsed JSON output:', parsedOutput)
+        res.status(200).json({ success: 'Resume processed successfully \nPlease Fill out remaining fields', parsedOutput });
+        
+        // res.status(200).json({ success: 'Resume processed successfully' });
+
+    }
+    catch(err){
         next(err);
     }
 }
@@ -712,6 +784,7 @@ module.exports = {
     postContact,
     postProfile,
     postResume,
+    parseResume,
     postPersonal,
     postProject,
     postWork,

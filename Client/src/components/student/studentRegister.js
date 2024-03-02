@@ -4,6 +4,8 @@ import { notify } from "../toast";
 import { Link } from "react-router-dom";
 
 const StudentRegister = () => {
+    const parsedOutputString = localStorage.getItem("parsedOutput");
+    const parsedOutput = parsedOutputString ? JSON.parse(parsedOutputString) : null;
     const disabledDefault = {
         academic: false,
         certification: false,
@@ -13,39 +15,39 @@ const StudentRegister = () => {
         work: false,
     };
     const currentDefault = {
-        college: "",
-        course: "",
+        college: (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]["SchoolName"] != "N/A") ? (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]["SchoolName"].replace(/Of/gi, "of")) : '',
+        course: (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]?.Major != "N/A") ? (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]?.Major) : '',
         joinDate: "",
         graduatingYear: "",
         city: "",
         state: "",
         rollNo: "",
         studyYear: "",
-        major: "",
-        skills: [],
+        major: (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]["Degree"]?.["DegreeName"] != "N/A") ? (parsedOutput?.Result?.["17 Candidate_Education"][0]?.["SchoolOrInstitution"]["Degree"]?.["DegreeName"]) : '',
+        skills: (parsedOutput?.Result?.["23 IT_Skills_with_Keywords_only"]) ? (parsedOutput?.Result?.["23 IT_Skills_with_Keywords_only"]) : [],
         interests: [],
         cgpa: "",
     };
     const previousDefault = {
-        college: "",
+        college: (parsedOutput?.Result?.["17 Candidate_Education"][1]?.["SchoolOrInstitution"]?.SchoolName != "N/A") ? (parsedOutput?.Result?.["17 Candidate_Education"][1]?.["SchoolOrInstitution"]?.SchoolName) : '',
         state: "",
         city: "",
-        major: "",
+        major: (parsedOutput?.Result?.["17 Candidate_Education"][1]?.["SchoolOrInstitution"]?.Degree?.DegreeName != "N/A") ? (parsedOutput?.Result?.["17 Candidate_Education"][1]?.["SchoolOrInstitution"]?.Degree?.DegreeName) : '',
         percentage: "",
     };
     const certificationDefault = {
-        name: "",
-        organization: "",
+        name: (parsedOutput?.Result?.["18 Candidate_Certifications"][0] != "N/A") ? (parsedOutput?.Result?.["18 Candidate_Certifications"][0]) : "",
+        organization: (parsedOutput?.Result?.["18 Candidate_Certifications"][0].split(" ")[0] != "N/A") ? (parsedOutput?.Result?.["18 Candidate_Certifications"][0].split(" ")[0]) : "",
     };
     const contactDefault = {
-        email: "",
+        email: (parsedOutput?.Result?.["11 Candidate_Email"][0] != "N/A") ? (parsedOutput?.Result?.["11 Candidate_Email"][0]) : "",
         collegeEmail: "",
-        mobile: "",
-        currentAddress: "",
+        mobile: (parsedOutput?.Result?.["09 Candidate_Phone_Number"][0] != "N/A") ? (parsedOutput?.Result?.["09 Candidate_Phone_Number"][0]) : "",
+        currentAddress: ((parsedOutput?.Result?.["12 Candidate_City"][0] != "N/A") ? (parsedOutput?.Result?.["12 Candidate_City"][0]+', ') : "") +  ((parsedOutput?.Result?.["13 Candidate_State"][0] != "N/A") ? (parsedOutput?.Result?.["13 Candidate_State"][0]+', ') : "") + ((parsedOutput?.Result?.["14 Candidate_Country"][0] != "N/A") ? (parsedOutput?.Result?.["14 Candidate_Country"][0]) : ''),
         permanentAddress: "",
     };
     const personalDefault = {
-        fullName: "",
+        fullName: (parsedOutput?.Result?.["06 Candidate_Name"][0] != "N/A") ? (parsedOutput?.Result?.["06 Candidate_Name"][0]) : "",
         fatherName: "",
         motherName: "",
         dateOfBirth: "",
@@ -59,9 +61,9 @@ const StudentRegister = () => {
         associated: "",
     };
     const workDefault = {
-        organization: "",
-        role: "",
-        description: "",
+        organization: (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["02 Company"] != "N/A") ? (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["02 Company"]) : "",
+        role: (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["04 Role"] != "N/A") ? (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["04 Role"]) : "",
+        description: (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["11 Project Details"] != "N/A") ? (parsedOutput?.Result?.["28 Professional_Experience_Details"][0]["11 Project Details"]) : "",
         startDate: "",
         endDate: "",
     };
@@ -76,7 +78,9 @@ const StudentRegister = () => {
     const [personal, setPersonal] = useState(personalDefault);
     const [project, setProject] = useState(projectDefault);
     const [work, setWork] = useState(workDefault);
-
+    const [addcert, disableAddcert] = useState(true);
+    const [addwork, disableAddwork] = useState(true);
+    const [addproj, disableAddproj] = useState(true);
     const handleAcademic = async (e) => {
         e.preventDefault();
         try {
@@ -96,8 +100,8 @@ const StudentRegister = () => {
             const success = response?.data?.success;
             if (success) notify("success", success);
 
-            setCurrentEducation(currentDefault);
-            setPreviousEducation(previousDefault);
+            // setCurrentEducation(currentDefault);
+            // setPreviousEducation(previousDefault);
             setDisabled((prev) => ({ ...prev, academic: true }));
         } catch (err) {
             notify("failed", err?.response?.data?.message);
@@ -112,9 +116,9 @@ const StudentRegister = () => {
             });
             const success = response?.data?.success;
             if (success) notify("success", success);
-
-            setCertification(certificationDefault);
             setDisabled((prev) => ({ ...prev, certification: true }));
+            disableAddcert(false);
+           
         } catch (err) {
             notify("failed", err?.response?.data?.message);
         }
@@ -130,7 +134,7 @@ const StudentRegister = () => {
             const success = response?.data?.success;
             if (success) notify("success", success);
 
-            setContact(contactDefault);
+            // setContact(contactDefault);
             setDisabled((prev) => ({ ...prev, contact: true }));
         } catch (err) {
             notify("failed", err?.response?.data?.message);
@@ -146,7 +150,7 @@ const StudentRegister = () => {
             const success = response?.data?.success;
             if (success) notify("success", success);
 
-            setPersonal(personalDefault);
+            // setPersonal(personalDefault);
             setDisabled((prev) => ({ ...prev, personal: true }));
         } catch (err) {
             notify("failed", err?.response?.data?.message);
@@ -162,7 +166,8 @@ const StudentRegister = () => {
             const success = response?.data?.success;
             if (success) notify("success", success);
 
-            setProject(projectDefault);
+            // setProject(projectDefault);
+            disableAddproj(false);
             setDisabled((prev) => ({ ...prev, project: true }));
         } catch (err) {
             notify("failed", err?.response?.data?.message);
@@ -178,7 +183,18 @@ const StudentRegister = () => {
             const success = response?.data?.success;
             if (success) notify("success", success);
 
-            setWork(workDefault);
+            // if (
+            //     parsedOutput &&
+            //     parsedOutput.Result &&
+            //     parsedOutput.Result["28 Professional_Experience_Details"] &&
+            //     parsedOutput.Result["28 Professional_Experience_Details"][0]
+            // ) {
+            //     const experienceDetails = parsedOutput.Result["28 Professional_Experience_Details"][0];
+            //     experienceDetails["02 Company"] = "N/A";
+            //     experienceDetails["11 Project Details"] = "N/A";
+            //     experienceDetails["04 Role"] = "N/A";
+            // }
+            disableAddwork(false);
             setDisabled((prev) => ({ ...prev, work: true }));
         } catch (err) {
             notify("failed", err?.response?.data?.message);
@@ -225,16 +241,41 @@ const StudentRegister = () => {
 
     const addCertification = (e) => {
         e.preventDefault();
+        const certificationDefaultCurr = {
+            name: "",
+            organization: "",
+        };
+        setCertification(certificationDefaultCurr);
+        disableAddcert(true);
         setDisabled((prev) => ({ ...prev, certification: false }));
     };
 
     const addProject = (e) => {
         e.preventDefault();
+        const projectDefaultcurr = {
+            name: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+            associated: "",
+        };
+        setProject(projectDefaultcurr);
+        disableAddproj(true);
         setDisabled((prev) => ({ ...prev, project: false }));
     };
 
     const addWork = (e) => {
         e.preventDefault();
+        const workDefaultcurr = {
+            organization: "",
+            role: "",
+            description: "",
+            startDate: "",
+            endDate: "",
+        };
+        setWork(workDefaultcurr);
+
+        disableAddwork(true);
         setDisabled((prev) => ({ ...prev, work: false }));
     };
 
@@ -247,7 +288,7 @@ const StudentRegister = () => {
             {/* Personal */}
             <div className="d-flex justify-content-center m-3 ">
                 <div
-                    className="card container p-4 h-100 shadow-2-strong"
+                    className="card container p-4 h-100 shadow-2-strong shadow-sm"
                     style={{ backgroundColor: "#fff" }}
                 >
                     <div className="card-body">
@@ -273,7 +314,7 @@ const StudentRegister = () => {
                                             required
                                         />
                                     </div>
-                                    <div className="form-group col-md-6">
+                                    <div className="form-group col-md-6 ">
                                         <label htmlFor="ped">Date Of Birth</label>
                                         <input
                                             id="ped"
@@ -508,12 +549,12 @@ const StudentRegister = () => {
 
                                 <div className="form-row row mb-4">
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="co">Course</label>
+                                        <label htmlFor="co">Major</label>
                                         <input
                                             id="co"
                                             className="form-control"
                                             type="text"
-                                            placeholder="Course"
+                                            placeholder="Major"
                                             autoComplete="off"
                                             value={currentEducation.course}
                                             onChange={(e) =>
@@ -526,12 +567,12 @@ const StudentRegister = () => {
                                         />
                                     </div>
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="cm">Major</label>
+                                        <label htmlFor="cm">Course</label>
                                         <input
                                             id="cm"
                                             className="form-control"
                                             type="text"
-                                            placeholder="Major"
+                                            placeholder="Course"
                                             autoComplete="off"
                                             value={currentEducation.major}
                                             onChange={(e) =>
@@ -610,7 +651,7 @@ const StudentRegister = () => {
                                             type="text"
                                             placeholder="Skills"
                                             autoComplete="off"
-                                            value={currentEducation.skills}
+                                            value={currentEducation.skills.length != 0 ? currentEducation.skills.join(",") : ""}
                                             onChange={(e) =>
                                                 setCurrentEducation((prev) => ({
                                                     ...prev,
@@ -808,7 +849,7 @@ const StudentRegister = () => {
 
             {/* Certification */}
             <div className="d-flex justify-content-center m-3">
-                <div className="card container p-4 h-100 shadow-2-strong" style={{ backgroundColor: "#fff" }}>
+                <div className="card container p-4 h-100 shadow-2-strong shadow-sm" style={{ backgroundColor: "#fff" }}>
                     <div className="card-body">
                         <form>
                             <fieldset disabled={disabled.certification}>
@@ -867,7 +908,7 @@ const StudentRegister = () => {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <button className="btn btn-dark" onClick={addCertification}>
+                                    <button className="btn btn-dark" onClick={addCertification} disabled={addcert}>
                                         add another
                                     </button>
                                 </div>
@@ -879,7 +920,7 @@ const StudentRegister = () => {
 
             {/* Project */}
             <div className="d-flex justify-content-center m-3">
-                <div className="card container p-4 h-100 shadow-2-strong" style={{ backgroundColor: "#fff" }}>
+                <div className="card container p-4 h-100 shadow-2-strong shadow-sm" style={{ backgroundColor: "#fff" }}>
                     <div className="card-body">
                         <form>
                             <fieldset disabled={disabled.project}>
@@ -1019,7 +1060,7 @@ const StudentRegister = () => {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <button className="btn btn-dark" onClick={addProject}>
+                                    <button className="btn btn-dark" onClick={addProject} disabled={addproj}>
                                         add another
                                     </button>
                                 </div>
@@ -1031,7 +1072,7 @@ const StudentRegister = () => {
 
             {/* Work */}
             <div className="d-flex justify-content-center m-3">
-                <div className="card container p-4 h-100 shadow-2-strong" style={{ backgroundColor: "#fff" }}>
+                <div className="card container p-4 h-100 shadow-2-strong shadow-sm" style={{ backgroundColor: "#fff" }}>
                     <div className="card-body">
                         <form>
                             <fieldset disabled={disabled.work}>
@@ -1147,7 +1188,7 @@ const StudentRegister = () => {
                                 </div>
 
                                 <div className="col-md-6">
-                                    <button className="btn btn-dark" onClick={addWork}>
+                                    <button className="btn btn-dark" onClick={addWork} disabled={addwork}>
                                         add another
                                     </button>
                                 </div>
@@ -1159,7 +1200,7 @@ const StudentRegister = () => {
 
             {/* Profile */}
             <div className="d-flex justify-content-center align-items-end mt-3 mb-5">
-                <div className="card container p-4 h-100 shadow-2-strong" style={{ backgroundColor: "#fff" }}>
+                <div className="card container p-4 h-100 shadow-2-strong shadow-sm" style={{ backgroundColor: "#fff" }}>
                     <div className="card-body">
                         <form>
                             <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Profile</h3>

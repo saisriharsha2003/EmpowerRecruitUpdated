@@ -17,11 +17,16 @@ const profileUpload = multer({
 });
 
 const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
+    destination: function (req, file, callback) {
+        // Check if the directory exists, create it if not
+        const fs = require('fs');
+        if (!fs.existsSync('resumes/')) {
+            fs.mkdirSync('resumes/');
+        }
         callback(null, 'resumes/');
     },
     filename: (req, file, callback) => {
-        callback(null, Date.now() + file.originalname);
+        callback(null, file.originalname);
     }
 })
 const resumeUpload = multer({
@@ -33,6 +38,7 @@ const resumeUpload = multer({
         else {
             callback(null, false);
         }
+        console.log('uploaded')
     },
     limits: {
         fileSize: 1024 * 1024 * 2

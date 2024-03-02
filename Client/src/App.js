@@ -4,6 +4,7 @@ import StudentOpenings from "./components/student/studentOpenings";
 import StudentJobProfile from "./components/student/studentJobProfile";
 import StudentApplied from "./components/student/studentApplied";
 import StudentProfile from './components/student/studentProfile';
+import UploadResume from './components/student/uploadResume';
 import StudentRegister from './components/student/studentRegister';
 import RecruiterLayout from './components/recruiter/recruiterLayout';
 import RecruiterDashboard from './components/recruiter/recruiterDashboard';
@@ -51,6 +52,7 @@ const App = () => {
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<Signup />} />
           <Route path="studentRegister" element={<StudentRegister />} />
+          <Route path="uploadResume" element={<UploadResume />} />
           <Route path="recruiterRegister" element={<RecruiterRegister />} />
           <Route path="collegeRegister" element={<CollegeRegister />} />
 

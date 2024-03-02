@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
 import { useNavigate } from 'react-router-dom';
-const RESUMES_URL = 'http://localhost:3500/resumes';
+// const RESUMES_URL = 'http://localhost:3500/resumes';
+const RESUMES_URL = 'https://final-year-project-server.vercel.app/resumes';
 
 const StudentProfile = () => {
     const [emailOTPSent, setEmailOTPSent] = useState(false);
@@ -535,12 +536,12 @@ const StudentProfile = () => {
 
             {/* Personal */}
             < div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-4'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Personal</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Personal</h2>
 
                                 {disabled.personal && (
                                     <div >
@@ -551,11 +552,11 @@ const StudentProfile = () => {
 
                             <fieldset disabled={disabled.personal}>
 
-                                <div className='d-flex flex-row'>
-                                    <div>
+                                <div className='from-row row'>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
+                                            <div className="flex-nowrap form-floating form-group">
                                                 <input
                                                     id='pef'
                                                     className="form-control"
@@ -604,7 +605,7 @@ const StudentProfile = () => {
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
@@ -619,7 +620,7 @@ const StudentProfile = () => {
                                                     required
                                                 />
                                                 <label htmlFor='ped'>Date of birth</label>
-                                                <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                             </div>
                                         </div>
 
@@ -638,24 +639,24 @@ const StudentProfile = () => {
                                 </div>
 
                                 <div className="card-body">
-                                    <button className="btn btn-primary" onClick={handlePersonal}>edit</button>
+                                    <button className="btn btn-primary" onClick={handlePersonal}>Save</button>
                                 </div>
 
                             </fieldset>
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div >
 
             {/* Contact */}
             < div className='d-flex justify-content-center m-3' >
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Contact</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Contact</h2>
 
                                 {disabled.contact && (
                                     <div >
@@ -665,11 +666,11 @@ const StudentProfile = () => {
                             </div>
 
                             <fieldset disabled={disabled.contact}>
-                                <div className='d-flex flex-row'>
-                                    <div>
+                                <div className='form-row row'>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
+                                            <div className="flex-nowrap form-floating ">
                                                 <input
                                                     id='cone'
                                                     className="form-control"
@@ -686,7 +687,7 @@ const StudentProfile = () => {
                                         </div>
 
                                         {contact.email && !emailOTPSent && !disableEmailOTP && !contact.emailVerified && (
-                                            <div className="card-body">
+                                            <div className="card-body mt-0">
                                                 <button className="btn btn-primary" onClick={getEmailOTP}>send otp</button>
                                             </div>)}
 
@@ -741,6 +742,8 @@ const StudentProfile = () => {
                                                 <textarea
                                                     id='conec'
                                                     className="form-control"
+                                                    rows="5"
+                                                    data-spy="scroll"
                                                     type="text"
                                                     placeholder='Current address'
                                                     autoComplete='off'
@@ -754,7 +757,7 @@ const StudentProfile = () => {
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
@@ -814,6 +817,8 @@ const StudentProfile = () => {
                                             <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='conp'
+                                                    rows="5"
+                                                    data-spy="scroll"
                                                     className="form-control"
                                                     type="text"
                                                     placeholder='Permanent address'
@@ -830,24 +835,24 @@ const StudentProfile = () => {
                                 </div>
 
                                 <div className="card-body">
-                                    <button className="btn btn-primary" onClick={handleContact}>edit</button>
+                                    <button className="btn btn-primary" onClick={handleContact}>Save</button>
                                 </div>
 
                             </fieldset>
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div >
 
             {/* Academic */}
             < div className='d-flex justify-content-center m-3' >
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Academic</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Academic</h2>
 
                                 {disabled.academic && (
                                     <div >
@@ -858,15 +863,15 @@ const StudentProfile = () => {
 
                             <fieldset disabled={disabled.academic}>
 
-                                <div className="card m-2" style={{ backgroundColor: '#fff' }}>
+                                <div className="card m-2 p-3 mb-5 shadow" style={{ backgroundColor: '#fff' }}>
 
                                     <div className="card-body">
-                                        <h2>Current education</h2>
+                                    <h2 class="mb-4 pb-1 pb-md-0 mb-md-2">Current Education</h2>
                                     </div>
 
-                                    <div className='d-flex flex-row'>
+                                    <div className='form-row row'>
 
-                                        <div>
+                                        <div className='col-md-6'>
 
                                             <div className="card-body">
                                                 <div className="flex-nowrap form-floating">
@@ -890,13 +895,13 @@ const StudentProfile = () => {
                                                         id='co'
                                                         className="form-control"
                                                         type="text"
-                                                        placeholder='Course'
+                                                        placeholder='Major'
                                                         autoComplete='off'
                                                         value={currentEducation.course}
                                                         onChange={(e) => setCurrentEducation(prev => ({ ...prev, course: e.target.value }))}
                                                         required
                                                     />
-                                                    <label htmlFor='co'>Course</label>
+                                                    <label htmlFor='co'>Major</label>
                                                 </div>
                                             </div>
 
@@ -913,7 +918,7 @@ const StudentProfile = () => {
                                                         required
                                                     />
                                                     <label htmlFor='cj'>Join Date</label>
-                                                    <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                    {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                                 </div>
                                             </div>
 
@@ -967,7 +972,7 @@ const StudentProfile = () => {
 
                                         </div>
 
-                                        <div>
+                                        <div className='col-md-6 mb-3'>
 
                                             <div className="card-body">
                                                 <div className="flex-nowrap form-floating">
@@ -991,13 +996,13 @@ const StudentProfile = () => {
                                                         id='cm'
                                                         className="form-control"
                                                         type="text"
-                                                        placeholder='Major'
+                                                        placeholder='Course'
                                                         autoComplete='off'
                                                         value={currentEducation.major}
                                                         onChange={(e) => setCurrentEducation(prev => ({ ...prev, major: e.target.value }))}
                                                         required
                                                     />
-                                                    <label htmlFor='cm'>Major</label>
+                                                    <label htmlFor='cm'>Course</label>
                                                 </div>
                                             </div>
 
@@ -1071,15 +1076,15 @@ const StudentProfile = () => {
 
                                 </div>
 
-                                <div className="card m-2" style={{ backgroundColor: '#fff' }}>
+                                <div className="card m-2 p-3 mb-4 shadow" style={{ backgroundColor: '#fff' }}>
 
                                     <div className="card-body">
-                                        <h2>Previous education</h2>
+                                    <h2 class="mb-4 pb-1 pb-md-0 mb-md-3">Previous Education</h2>
                                     </div>
 
-                                    <div className='d-flex flex-row'>
+                                    <div className='form-row row'>
 
-                                        <div>
+                                        <div className='col-md-6 mb-3'>
 
                                             <div className="card-body">
                                                 <div className="flex-nowrap form-floating">
@@ -1131,7 +1136,7 @@ const StudentProfile = () => {
 
                                         </div>
 
-                                        <div>
+                                        <div className='col-md-6'>
 
                                             <div className="card-body">
                                                 <div className="flex-nowrap form-floating">
@@ -1172,14 +1177,14 @@ const StudentProfile = () => {
                                 </div>
 
                                 <div className="card-body">
-                                    <button className="btn btn-primary" onClick={handleAcademic}>edit</button>
+                                    <button className="btn btn-primary" onClick={handleAcademic}>Save</button>
                                 </div>
 
                             </fieldset>
 
                         </form>
                     </div>
-                </div >
+                {/* </div > */}
             </div >
 
             {/* Certification */}
@@ -1187,12 +1192,14 @@ const StudentProfile = () => {
                 certifications.map((certification, index) => {
                     return (
                         <div key={index} className='d-flex justify-content-center m-3'>
-                            <div className='d-inline-flex p-2'>
-                                <div className="card" style={{ backgroundColor: '#fff' }}>
+                            {/* <div className='d-inline-flex p-2'> */}
+                                <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                                     <form className="card-body">
 
                                         <div className='d-flex justify-content-between'>
-                                            <h2>Certification {index + 1}</h2>
+                                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Certification {index + 1}</h2>
+
+                                            {/* <h2>Certification {index + 1}</h2> */}
 
                                             {disabled.certification && (
                                                 <div >
@@ -1203,8 +1210,8 @@ const StudentProfile = () => {
 
                                         <fieldset disabled={disabled.certification}>
 
-                                            <div className='d-flex flex-row'>
-
+                                            <div className='form-row row'>
+                                                <div className='col-md-6'>
                                                 <div className="card-body">
                                                     <div className="flex-nowrap form-floating">
                                                         <input
@@ -1223,7 +1230,9 @@ const StudentProfile = () => {
                                                         <label htmlFor={index + 'cen'}>Name</label>
                                                     </div>
                                                 </div>
-
+                                                </div>
+                                                
+                                                <div className='col-md-6'>
                                                 <div className="card-body">
                                                     <div className="flex-nowrap form-floating">
                                                         <input
@@ -1242,17 +1251,18 @@ const StudentProfile = () => {
                                                         <label htmlFor={index + 'ceo'}>Organization</label>
                                                     </div>
                                                 </div>
+                                                </div>
 
                                             </div>
 
 
                                             <div className='d-inline-flex'>
                                                 <div className="card-body">
-                                                    <button id={index + 'cbs'} className="btn btn-primary" onClick={handleCertification}>edit</button>
+                                                    <button id={index + 'cbs'} className="btn btn-primary" onClick={handleCertification}>Save</button>
                                                 </div>
 
                                                 <div className="card-body">
-                                                    <button id={index + 'cbd'} className="btn btn-dark" onClick={deleteCertification}>delete</button>
+                                                    <button id={index + 'cbd'} className="btn btn-dark" onClick={deleteCertification}>Remove</button>
                                                 </div>
                                             </div>
 
@@ -1260,7 +1270,7 @@ const StudentProfile = () => {
 
                                     </form>
                                 </div>
-                            </div>
+                            {/* </div> */}
                         </div>
                     )
                 })
@@ -1268,16 +1278,16 @@ const StudentProfile = () => {
 
             {/* New Certification */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <fieldset>
 
-                                <h2>New Certification</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">New Certification</h2>
 
-                                <div className='d-flex flex-row'>
-
+                                <div className='from-row row'>
+                                    <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
@@ -1293,7 +1303,8 @@ const StudentProfile = () => {
                                             <label htmlFor='ncen'>Name</label>
                                         </div>
                                     </div>
-
+                                    </div>
+                                    <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
@@ -1309,7 +1320,7 @@ const StudentProfile = () => {
                                             <label htmlFor='nceo'>Organization</label>
                                         </div>
                                     </div>
-
+                                    </div>
                                 </div>
 
                                 <div className="card-body">
@@ -1320,7 +1331,7 @@ const StudentProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Project */}
@@ -1328,12 +1339,12 @@ const StudentProfile = () => {
                 projects.map((project, index) => {
                     return (
                         <div key={index} className='d-flex justify-content-center m-3'>
-                            <div className='d-inline-flex p-2'>
-                                <div className="card" style={{ backgroundColor: '#fff' }}>
+                            {/* <div className='d-inline-flex p-2'> */}
+                                <div className="card container h-100 shadow-2-strong p-4" style={{ backgroundColor: '#fff' }}>
                                     <form className="card-body">
 
                                         <div className='d-flex justify-content-between'>
-                                            <h2>Project {index + 1}</h2>
+                                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Project {index + 1}</h2>
 
                                             {disabled.project && (
                                                 <div >
@@ -1344,8 +1355,8 @@ const StudentProfile = () => {
 
                                         <fieldset disabled={disabled.project}>
 
-                                            <div className='d-flex flex-row'>
-                                                <div>
+                                            <div className='form-row row'>
+                                                <div className='col-md-6'>
 
                                                     <div className="card-body">
                                                         <div className="flex-nowrap form-floating">
@@ -1382,7 +1393,7 @@ const StudentProfile = () => {
                                                                 required
                                                             />
                                                             <label htmlFor={index + 'prs'}>Start date</label>
-                                                            <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                            {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                                         </div>
                                                     </div>
 
@@ -1407,12 +1418,14 @@ const StudentProfile = () => {
 
                                                 </div>
 
-                                                <div>
+                                                <div className='col-md-6'>
 
                                                     <div className="card-body">
                                                         <div className="flex-nowrap form-floating">
                                                             <textarea
                                                                 id={index + 'prd'}
+                                                                rows="5"
+                                                                data-spy="scroll"
                                                                 className="form-control"
                                                                 type="text"
                                                                 placeholder='Description'
@@ -1444,11 +1457,11 @@ const StudentProfile = () => {
                                                                 })}
                                                             />
                                                             <label htmlFor={index + 'pre'}>End date</label>
-                                                            <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                            {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                                         </div>
                                                     </div>
 
-                                                    <div className="card-body">
+                                                    <div className="card-body mt-3">
                                                         <div className="flex-nowrap form-check">
                                                             <input
                                                                 id={index + 'prc'}
@@ -1470,18 +1483,18 @@ const StudentProfile = () => {
 
                                             <div className='d-inline-flex'>
                                                 <div className="card-body">
-                                                    <button id={index + 'pbs'} className="btn btn-primary" onClick={handleProject}>edit</button>
+                                                    <button id={index + 'pbs'} className="btn btn-primary" onClick={handleProject}>Save</button>
                                                 </div>
 
                                                 <div className="card-body">
-                                                    <button id={index + 'pbd'} className="btn btn-dark" onClick={deleteProject}>delete</button>
+                                                    <button id={index + 'pbd'} className="btn btn-dark" onClick={deleteProject}>Remove</button>
                                                 </div>
                                             </div>
 
                                         </fieldset>
                                     </form>
                                 </div>
-                            </div>
+                            {/* </div> */}
                         </div >
                     )
                 })
@@ -1489,16 +1502,16 @@ const StudentProfile = () => {
 
             {/* New Project */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <fieldset>
 
-                                <h2>New Project</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">New Project</h2>
 
-                                <div className='d-flex flex-row'>
-                                    <div>
+                                <div className='form-row row'>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
@@ -1529,7 +1542,7 @@ const StudentProfile = () => {
                                                     required
                                                 />
                                                 <label htmlFor='prsnew'>Start date</label>
-                                                <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                             </div>
                                         </div>
 
@@ -1551,12 +1564,14 @@ const StudentProfile = () => {
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='prdnew'
+                                                    rows="5"
+                                                    data-spy="scroll"
                                                     className="form-control"
                                                     type="text"
                                                     placeholder='Description'
@@ -1582,11 +1597,11 @@ const StudentProfile = () => {
                                                     onChange={(e) => setNewProject(prev => ({ ...prev, endDate: e.target.value }))}
                                                 />
                                                 <label htmlFor='prenew'>End date</label>
-                                                <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                             </div>
                                         </div>
 
-                                        <div className="card-body">
+                                        <div className="card-body mt-3">
                                             <div className="flex-nowrap form-check">
                                                 <input
                                                     id='prcnew'
@@ -1612,7 +1627,7 @@ const StudentProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Work */}
@@ -1620,12 +1635,14 @@ const StudentProfile = () => {
                 works.map((work, index) => {
                     return (
                         <div key={index} className='d-flex justify-content-center m-3'>
-                            <div className='d-inline-flex p-2'>
-                                <div className="card" style={{ backgroundColor: '#fff' }}>
+                            {/* <div className='d-inline-flex p-2'> */}
+                                <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                                     <form className="card-body">
 
                                         <div className='d-flex justify-content-between'>
-                                            <h2>Work {index + 1}</h2>
+                                            {/* <h2>Work {index + 1}</h2> */}
+                                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Work {index + 1}</h2>
+
 
                                             {disabled.work && (
                                                 <div >
@@ -1636,8 +1653,8 @@ const StudentProfile = () => {
 
                                         <fieldset disabled={disabled.work}>
 
-                                            <div className='d-flex flex-row'>
-                                                <div>
+                                            <div className='form-row row'>
+                                                <div className='col-md-6'>
 
                                                     <div className="card-body">
                                                         <div className="flex-nowrap form-floating">
@@ -1674,7 +1691,7 @@ const StudentProfile = () => {
                                                                 required
                                                             />
                                                             <label htmlFor={index + 'ws'}>Start date</label>
-                                                            <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                            {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                                         </div>
                                                     </div>
 
@@ -1683,6 +1700,8 @@ const StudentProfile = () => {
                                                             <textarea
                                                                 id={index + 'wd'}
                                                                 className="form-control"
+                                                                rows="5"
+                                                                data-spy="scroll"
                                                                 type="text"
                                                                 placeholder='Description'
                                                                 autoComplete='off'
@@ -1699,7 +1718,7 @@ const StudentProfile = () => {
 
                                                 </div>
 
-                                                <div>
+                                                <div className='col-md-6'>
 
                                                     <div className="card-body">
                                                         <div className="flex-nowrap form-floating">
@@ -1736,7 +1755,7 @@ const StudentProfile = () => {
                                                                 required
                                                             />
                                                             <label htmlFor={index + 'we'}>End date</label>
-                                                            <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                            {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                                         </div>
                                                     </div>
 
@@ -1745,11 +1764,11 @@ const StudentProfile = () => {
 
                                             <div className='d-inline-flex'>
                                                 <div className="card-body">
-                                                    <button id={index + 'wbs'} className="btn btn-primary" onClick={handleWork}>edit</button>
+                                                    <button id={index + 'wbs'} className="btn btn-primary" onClick={handleWork}>Save</button>
                                                 </div>
 
                                                 <div className="card-body">
-                                                    <button id={index + 'wbd'} className="btn btn-dark" onClick={deleteWork}>delete</button>
+                                                    <button id={index + 'wbd'} className="btn btn-dark" onClick={deleteWork}>Remove</button>
                                                 </div>
                                             </div>
 
@@ -1757,7 +1776,7 @@ const StudentProfile = () => {
 
                                     </form>
                                 </div>
-                            </div>
+                            {/* </div> */}
                         </div >
                     )
                 })
@@ -1765,16 +1784,16 @@ const StudentProfile = () => {
 
             {/* New Work */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <fieldset>
 
-                                <h2>New Work</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">New Work</h2>
 
-                                <div className='d-flex flex-row'>
-                                    <div>
+                                <div className='form-row row'>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
@@ -1805,7 +1824,7 @@ const StudentProfile = () => {
                                                     required
                                                 />
                                                 <label htmlFor='ws'>Start date</label>
-                                                <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                             </div>
                                         </div>
 
@@ -1813,6 +1832,8 @@ const StudentProfile = () => {
                                             <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='wd'
+                                                    rows="5"
+                                                    data-spy="scroll"
                                                     className="form-control"
                                                     type="text"
                                                     placeholder='Description'
@@ -1827,7 +1848,7 @@ const StudentProfile = () => {
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
@@ -1858,7 +1879,7 @@ const StudentProfile = () => {
                                                     required
                                                 />
                                                 <label htmlFor='we'>End date</label>
-                                                <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p>
+                                                {/* <p className="card-subtitle text-body-secondary">&nbsp;DD/MM/YYYY</p> */}
                                             </div>
                                         </div>
 
@@ -1873,24 +1894,29 @@ const StudentProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Profile */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm  " style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
-                            <h2>Profile</h2>
+                        <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Profile</h2>
 
-                            <div className='d-flex align-items-center'>
+                            <div className='form-row row'>
 
-                                {profile && <img src={profile} height={'100'} alt='profile' />}
-
-                                <div className="card-body">
+                                <div className='col-md-3'>
+                                    <div className='card-body'>
+                                {       profile && <img className="rounded-circle " src={profile} height={'120'} width={'120'} alt='profile' />}
+                                    </div>
+                                </div>
+                                <div className="col-md-9">
+                                    <div className='card-body'>
                                     <div className="flex-nowrap">
-                                        <label htmlFor="profile" className="form-label"><b>Profile pic</b></label>
+                                        <label htmlFor="profile" className="form-label"><b>Change Profile pic</b> (File should be less than 2mb and
+                                        only jpeg, jpg and png's allowed)</label>
                                         <input
                                             className="form-control"
                                             type="file"
@@ -1898,18 +1924,25 @@ const StudentProfile = () => {
                                             name='profile'
                                         />
                                     </div>
-                                    <div className='d-flex flex-row'>
-                                        <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label>
-                                        <button className="btn btn-primary m-2" onClick={handleProfile}>upload</button>
+                                    {/* <div className='d-flex flex-row'> */}
+                                        {/* <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label> */}
+                                        <button className="btn btn-primary mt-3" onClick={handleProfile}>upload</button>
+                                    {/* </div> */}
                                     </div>
                                 </div>
 
                             </div>
-
+                            <div className='form-row row'>
+                                {resume&&(<div className='col-md-3'>
+                                    <div className='card-body'>
+                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume}</a>
+                                    </div>
+                                </div>)}
+                            <div className='col-md-9'>
                             <div className="card-body">
                                 <div className="flex-nowrap">
-                                    <label htmlFor="resume" className="form-label"><b>Resume</b></label>&rarr;
-{resume&&(<a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume.slice(13,)}</a>)}
+                                    <label htmlFor="resume" className="form-label"><b>Resume</b> (File should be less than 2 mb and
+                                        only pdf's are allowed)</label>
                                     <input
                                         className="form-control"
                                         type="file"
@@ -1917,25 +1950,26 @@ const StudentProfile = () => {
                                         name='resume'
                                     />
                                 </div>
-                                <div className='d-flex flex-row'>
-                                    <label className="form-label">File should be lessthan 2 mb and<br /> only pdf's allowed</label>
-                                    <button className="btn btn-primary m-2" onClick={handleResume}>upload</button>
-                                </div>
+                                {/* <div className='d-flex flex-row'> */}
+                                    {/* <label className="form-label">File should be lessthan 2 mb and<br /> only pdf's allowed</label> */}
+                                    <button className="btn btn-primary mt-3" onClick={handleResume}>upload</button>
+                                {/* </div> */}
                             </div>
-
+                            </div>
+                            </div>
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Account */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Account</h2>
+                            <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Account</h2>
 
                                 {disabled.account && (
                                     <div >
@@ -1946,9 +1980,9 @@ const StudentProfile = () => {
 
                             <fieldset disabled={disabled.account}>
 
-                                <div className='d-flex flex-row'>
+                                <div className='form-row row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="form-floating flex-nowrap">
@@ -1969,12 +2003,12 @@ const StudentProfile = () => {
                                         </div>
 
                                         <div className="card-body">
-                                            <button onClick={handleUsername} className="btn btn-primary">edit</button>
+                                            <button onClick={handleUsername} className="btn btn-primary">Save</button>
                                         </div>
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="form-floating flex-nowrap">
@@ -2011,7 +2045,7 @@ const StudentProfile = () => {
                                         </div>
 
                                         <div className="card-body">
-                                            <button onClick={handlePassword} className="btn btn-primary">edit</button>
+                                            <button onClick={handlePassword} className="btn btn-primary">Save</button>
                                         </div>
 
                                     </div>
@@ -2022,7 +2056,7 @@ const StudentProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
         </>

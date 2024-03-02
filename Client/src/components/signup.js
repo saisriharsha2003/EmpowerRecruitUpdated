@@ -28,7 +28,12 @@ const Signup = () => {
             const accessToken = response1?.data?.accessToken;
             localStorage.setItem('accessToken', accessToken);
 
-            navigate('/' + role + 'Register');
+            if(role === 'student'){
+                navigate('/uploadResume');
+            }
+            else{
+                navigate('/' + role + 'Register');
+            }
             setUsername('');
             setPassword('');
             setMatchPassword('');

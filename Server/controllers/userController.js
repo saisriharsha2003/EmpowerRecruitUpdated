@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+// console.log("In handle signup")
 const handleSignup = async (req, res, next) => {
+    console.log("In handle signup")
     const { username, password, role } = req.body;
     if (!username || !password || !role) return res.status(400).json({ 'message': 'Bad request - Username, Password and role are required' });
     if (password.length < 8) return res.status(400).json({ 'message': 'password must have minimun length of 8 characters' });
@@ -31,6 +32,7 @@ const handleSignup = async (req, res, next) => {
 }
 
 const handleLogin = async (req, res, next) => {
+    console.log("In handle login")
     const cookies = req.cookies;
     const { username, password, role } = req.body;
     if (!username || !password || !role) return res.status(400).json({ 'message': 'Bad request - Username, Password and role are required' });
@@ -78,7 +80,7 @@ const handleLogin = async (req, res, next) => {
         const query = await foundUser.save();
         res.cookie('jwt', newRefreshToken, { httpOnly: true, sameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
         res.json({
-            'success': `${role} ${username} is logged in!`,
+            'success': `${role} ${username} is logged in hellooooooooooooo!`,
             accessToken
         });
     } else {
@@ -152,6 +154,7 @@ const handleRefreshToken = async (req, res) => {
 }
 
 const handleLogout = async (req, res) => {
+    console.log("in logout")
     const { role } = req.body;
     if (!role) return res.status(400).json({ 'message': 'Bad request - role is required' });
     if (!['student', 'college', 'recruiter', 'admin'].includes(role)) return res.status(400).json({ 'message': 'invalid role' });

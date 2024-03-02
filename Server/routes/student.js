@@ -33,6 +33,8 @@ router.post('/profile$', profileUpload.single('profile'), studentController.post
 
 router.post('/resume$', resumeUpload.single('resume'), studentController.postResume);
 
+router.post('/parseResume$', resumeUpload.single('resume'), studentController.parseResume);
+
 router.post('/personal$', studentController.postPersonal);
 
 router.post('/project$', studentController.postProject);
