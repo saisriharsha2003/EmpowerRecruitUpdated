@@ -28,7 +28,7 @@ const Signup = () => {
             const accessToken = response1?.data?.accessToken;
             localStorage.setItem('accessToken', accessToken);
 
-            if(role === 'student'){
+            if(role.toLowerCase() === 'student'){
                 navigate('/uploadResume');
             }
             else{
