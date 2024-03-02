@@ -34,6 +34,9 @@ app.use(function (request, response, next) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
+app.use(corse())
+
+
 app.use(express.urlencoded({ extended: false }));
 
 app.use(express.json());
