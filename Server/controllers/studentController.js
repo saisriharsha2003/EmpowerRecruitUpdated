@@ -374,6 +374,11 @@ const parseResume = async (req, res, next) => {
         // Run the Python process and wait for the parsed output
         const parsedOutput = await runPythonProcess();
         console.log('Parsed JSON output:', parsedOutput)
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
         res.status(200).json({ success: 'Resume processed successfully \nPlease Fill out remaining fields', parsedOutput });
         
         // res.status(200).json({ success: 'Resume processed successfully' });
