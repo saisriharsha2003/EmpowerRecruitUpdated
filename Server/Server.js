@@ -15,7 +15,7 @@ connectDB();
 app.use(credentials);
 
 
-app.use(cors(corsOptions));
+app.use(cors());
 // app.use((req, res, next) => {
 //     const allowedOrigins = ['https://final-year-project-client-five.vercel.app', 'http://localhost:3000'];
 //     const origin = req.headers.origin;
