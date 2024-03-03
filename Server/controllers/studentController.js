@@ -344,7 +344,7 @@ const parseResume = async (req, res, next) => {
         // console.log(req)
         const resumeFile = req.file; // Access the buffer of the uploaded file
         const formData = new FormData();
-        let buf = fs.readFileSync("resumes/"+resumeFile.originalname);
+        let buf = fs.readFileSync("/tmp"+resumeFile.originalname);
         formData.append('resumenergpt', new Blob([buf], { type: resumeFile.mimetype }), resumeFile.originalname); // Append the blob with a filename
         const parsedOutput = await axios.post(process.env.RESUME_PARSER, formData).then((resp) => {
             console.log(resp.data);
@@ -353,7 +353,7 @@ const parseResume = async (req, res, next) => {
             console.log(e.data)
             next(e);
         })
-
+        fs.unlinkSync("/tmp"+resumeFile.originalname)
        
         res.setHeader("Access-Control-Allow-Origin", "*")
         res.setHeader("Access-Control-Allow-Credentials", "true");
