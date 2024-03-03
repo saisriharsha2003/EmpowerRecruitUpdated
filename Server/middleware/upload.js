@@ -20,10 +20,10 @@ const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         // Check if the directory exists, create it if not
         const fs = require('fs');
-        if (!fs.existsSync('/tmp')) {
-            fs.mkdirSync('/tmp');
+        if (!fs.existsSync('/tmp/')) {
+            fs.mkdirSync('/tmp/');
         }
-        callback(null, '/tmp');
+        callback(null, '/tmp/');
     },
     filename: (req, file, callback) => {
         callback(null, file.originalname);
