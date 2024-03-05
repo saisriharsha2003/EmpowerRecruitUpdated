@@ -23,7 +23,7 @@ const RecruiterOpening = () => {
         cgpa: "",
         description: (jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"] !== undefined && jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"][0] !== "N/A" ? "Skills required: \n" + jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"].join(", ") : "") +
                      (jdOutput?.result?.["23 Certifications"] !== undefined && jdOutput?.result?.["23 Certifications"][0] !== "N/A" ? "\nCertifications required: \n" + jdOutput?.result?.["23 Certifications"].join(", ") : ""),
-        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== undefined && jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== "N/A" ? jdOutput?.result?.["17 Overall_number_of_years_of_experience"]: "",
+        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== undefined && jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== "N/A" ? String(jdOutput?.result?.["17 Overall_number_of_years_of_experience"]): "",
         seats: jdOutput?.result?.["12 No_of_positions"] !== "N/A" ? jdOutput?.result?.["12 No_of_positions"] : "",
         package: jdOutput?.result?.["15 Bill_Rate"] !== "N/A" ? jdOutput?.result?.["15 Bill_Rate"] : "",
         applicationFor: "",
