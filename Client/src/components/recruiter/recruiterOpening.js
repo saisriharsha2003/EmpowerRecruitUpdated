@@ -8,12 +8,22 @@ const RecruiterOpening = () => {
     const jdOutputString = localStorage.getItem("jdOutput");
     const jdOutput = jdOutputString ? JSON.parse(jdOutputString) : null;
     // console.log(jdOutput?.Result?.["06 Job_Title"])
+    const initjobDefault = {
+        jobRole: "",
+        cgpa: "",
+        description: "",
+        experience:  "",
+        seats: "",
+        package: "",
+        applicationFor: "",
+    }
+
     const jobDefault = {
         jobRole: jdOutput?.result?.["06 Job_Title"] !== "N/A" ? jdOutput?.result?.["06 Job_Title"] : "",
         cgpa: "",
         description: (jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"] !== undefined && jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"][0] !== "N/A" ? "Skills required: \n" + jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"].join(", ") : "") +
                      (jdOutput?.result?.["23 Certifications"] !== undefined && jdOutput?.result?.["23 Certifications"][0] !== "N/A" ? "\nCertifications required: \n" + jdOutput?.result?.["23 Certifications"].join(", ") : ""),
-        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== "N/A" ? jdOutput?.result?.["17 Overall_number_of_years_of_experience"] + " years" : "",
+        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== "N/A" ? jdOutput?.result?.["17 Overall_number_of_years_of_experience"]: "",
         seats: jdOutput?.result?.["12 No_of_positions"] !== "N/A" ? jdOutput?.result?.["12 No_of_positions"] : "",
         package: jdOutput?.result?.["15 Bill_Rate"] !== "N/A" ? jdOutput?.result?.["15 Bill_Rate"] : "",
         applicationFor: "",
@@ -53,7 +63,7 @@ const RecruiterOpening = () => {
             if (success)
                 notify('success', success);
             localStorage.removeItem("jdOutput")
-            setJob(jobDefault);
+            setJob(initjobDefault);
         } catch (err) {
             notify('failed', err?.response?.data?.message);
         }
