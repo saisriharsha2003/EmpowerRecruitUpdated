@@ -144,8 +144,19 @@ const getDrives = async (req, res, next) => {
         const foundCollege = await College.findById(id).populate('institution').exec();
         if (!foundCollege) return res.status(401).json({ 'message': 'unauthorized' });
 
-        const foundApprovedJobs = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: true }).select('jobRole description companyName').exec();
-        const foundNotApprovedJobs = await Job.find({ applicationFor: foundCollege.institution.name, collegeApproved: false }).select('jobRole description companyName').exec();
+        const foundApprovedJobs = await Job.find({ 
+            applicationFor: { 
+                $in: [foundCollege.institution.name, 'Everyone'] 
+            }, 
+            collegeApproved: true 
+        }).select('jobRole description companyName').exec();
+        
+        const foundNotApprovedJobs = await Job.find({ 
+            applicationFor: { 
+                $in: [foundCollege.institution.name, 'Everyone'] 
+            }, 
+            collegeApproved: false 
+        }).select('jobRole description companyName').exec();
 
         res.json({
             approved: foundApprovedJobs,
