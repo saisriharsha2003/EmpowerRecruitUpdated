@@ -92,6 +92,8 @@ const Layout = () => {
             const decoded = jwtDecode(accessToken);
             await axios.post('/logout', { role: decoded.userInfo.role })
             localStorage.removeItem('accessToken');
+            localStorage.removeItem('parsedOutput');
+            localStorage.removeItem("jdOutput")
             setProfile('');
             const i = interval;
             clearInterval(i)

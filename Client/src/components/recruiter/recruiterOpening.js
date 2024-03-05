@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
+import { useNavigate } from 'react-router-dom';
+
 
 const RecruiterOpening = () => {
+    const jdOutputString = localStorage.getItem("jdOutput");
+    const jdOutput = jdOutputString ? JSON.parse(jdOutputString) : null;
+    // console.log(jdOutput?.Result?.["06 Job_Title"])
     const jobDefault = {
-        jobRole: '',
-        cgpa: '',
-        description: '',
-        experience: '',
-        seats: '',
-        package: '',
-        applicationFor: '',
-    }
+        jobRole: jdOutput?.result?.["06 Job_Title"] !== "N/A" ? jdOutput?.result?.["06 Job_Title"] : "",
+        cgpa: "",
+        description: (jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"][0] !== "N/A" ? "Skills required: \n" + jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"].join(", ") : "") +
+                     (jdOutput?.result?.["23 Certifications"][0] !== "N/A" ? "\nCertifications required: \n" + jdOutput?.result?.["23 Certifications"].join(", ") : ""),
+        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"][0] !== "N/A" ? jdOutput?.result?.["17 Overall_number_of_years_of_experience"][0] : "",
+        seats: jdOutput?.result?.["12 No_of_positions"] !== "N/A" ? jdOutput?.result?.["12 No_of_positions"] : "",
+        package: jdOutput?.result?.["15 Bill_Rate"] !== "N/A" ? jdOutput?.result?.["15 Bill_Rate"] : "",
+        applicationFor: "",
+    };
+    
+    const navigate = useNavigate();
 
     const axios = useAxiosPrivate();
     const [job, setJob] = useState(jobDefault);
@@ -42,7 +50,7 @@ const RecruiterOpening = () => {
             const success = response?.data?.success;
             if (success)
                 notify('success', success);
-
+            localStorage.removeItem("jdOutput")
             setJob(jobDefault);
         } catch (err) {
             notify('failed', err?.response?.data?.message);
@@ -54,15 +62,21 @@ const RecruiterOpening = () => {
 
             {/* Job Detail */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
-                        <form className="card-body">
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
+                        
+                        <div className='card-body'>
+                        <div className='d-flex justify-content-between'>
+                                    <h2 class="mb-4 pb-1 pb-md-0 mb-md-4">Job</h2>
+                                    <div >
+                                        <button onClick={() => navigate('/uploadJD')} className="btn btn-dark">Upload JD</button>
+                                    </div>
+                            </div>
+                        <form>
 
-                            <h2>Job</h2>
+                            <div className='form-row row'>
 
-                            <div className='d-flex flex-row'>
-
-                                <div>
+                                <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
@@ -98,22 +112,6 @@ const RecruiterOpening = () => {
                                     </div>
 
                                     <div className="card-body">
-                                        <div className="flex-nowrap form-floating">
-                                            <textarea
-                                                id='jd'
-                                                className="form-control"
-                                                type="text"
-                                                placeholder='Description'
-                                                autoComplete='off'
-                                                value={job.description}
-                                                onChange={(e) => setJob(prev => ({ ...prev, description: e.target.value }))}
-                                                required
-                                            />
-                                            <label htmlFor='jd'>Description</label>
-                                        </div>
-                                    </div>
-
-                                    <div className="card-body">
                                         <div className="form-floating flex-nowrap">
                                             <select id='application' required className="form-select" value={job.applicationFor} onChange={(e) => setJob(prev => ({ ...prev, applicationFor: e.target.value }))}>
                                                 <option defaultValue=''></option>
@@ -125,9 +123,11 @@ const RecruiterOpening = () => {
                                             <label htmlFor='application'>Application for</label>
                                         </div>
                                     </div>
+                                    
                                 </div>
 
-                                <div>
+
+                                <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
@@ -150,13 +150,13 @@ const RecruiterOpening = () => {
                                                 id='js'
                                                 className="form-control"
                                                 type="text"
-                                                placeholder='Seats'
+                                                placeholder='Openings'
                                                 autoComplete='off'
                                                 value={job.seats}
                                                 onChange={(e) => setJob(prev => ({ ...prev, seats: e.target.value }))}
                                                 required
                                             />
-                                            <label htmlFor='js'>Seats</label>
+                                            <label htmlFor='js'>Openings</label>
                                         </div>
                                     </div>
 
@@ -179,13 +179,37 @@ const RecruiterOpening = () => {
 
                             </div>
 
+                            <div className='form-row row'>
+                                <div className='col-md-12'>
+                                <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <textarea
+                                                id='jd'
+                                                className="form-control"
+                                                rows="5"
+                                                style={{ height: "250px" }}
+                                                type="text"
+                                                placeholder='Description'
+                                                autoComplete='off'
+                                                value={job.description}
+                                                onChange={(e) => setJob(prev => ({ ...prev, description: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='jd'>Description</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
                             <div className="card-body">
                                 <button className="btn btn-primary" onClick={handleJob}>submit</button>
                             </div>
 
                         </form>
+                        </div>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
         </>

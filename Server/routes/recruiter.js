@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const recruiterController = require('../controllers/recruiterController');
 const verifyRole = require('../middleware/verfyRole');
-const { profileUpload } = require('../middleware/upload');
+const { profileUpload, resumeUpload } = require('../middleware/upload');
 
 router.use(verifyRole('recruiter'));
 
@@ -29,6 +29,8 @@ router.post('/job/new$', recruiterController.postNewJob);
 router.post('/application$', recruiterController.postApplication);
 
 router.post('/company$', recruiterController.postCompany);
+
+router.post('/parseJD', resumeUpload.single('jd'), recruiterController.parseJD);
 
 router.post('/profile$', profileUpload.single('profile'), recruiterController.postProfile);
 

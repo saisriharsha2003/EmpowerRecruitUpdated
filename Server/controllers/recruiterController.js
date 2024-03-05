@@ -6,6 +6,9 @@ const AppliedJob = require('../models/student/appliedJob');
 const Student = require('../models/student');
 const College = require('../models/college');
 const nodemailer = require('nodemailer');
+const fs = require('fs');
+const axios = require('axios');
+
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -249,6 +252,45 @@ const postNewJob = async (req, res, next) => {
     }
 }
 
+const parseJD = async (req, res, next) => {
+    const { id } = req;
+  
+    try {
+
+        const foundRecruiter = await Recruiter.findById(id).populate('company').exec();
+        if (!foundRecruiter) return res.status(401).json({ 'message': 'unauthorized' });
+
+        if (!req.file) return res.status(400).json({ 'message': 'Only pdf or docx are allowed which are less than 2 mb' });
+        // console.log(req)
+        const jdFile = req.file; // Access the buffer of the uploaded file
+        const formData = new FormData();
+        let buf = fs.readFileSync("/tmp/"+jdFile.originalname);
+        formData.append('jobnergpt', new Blob([buf], { type: jdFile.mimetype }), jdFile.originalname); // Append the blob with a filename
+        const jdOutput = await axios.post(process.env.JOB_PARSER, formData).then((resp) => {
+            console.log(resp.data);
+            return resp.data;
+        }).catch((e) => {
+            console.log(e.data)
+            next(e);
+        })
+        fs.unlinkSync("/tmp/"+jdFile.originalname)
+       
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader("Access-Control-Max-Age", "1800");
+        res.setHeader("Access-Control-Allow-Headers", "content-type");
+        res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
+        res.status(201).json({ success: 'Job Description processed successfully \nPlease fill out remaining fields', jdOutput });
+
+        
+        // res.status(200).json({ success: 'Resume processed successfully' });
+
+    }
+    catch(err){
+        next(err);
+    }
+}
+
 const postApplication = async (req, res, next) => {
     const { id } = req;
     const { applicationId, status } = req.body;
@@ -445,6 +487,7 @@ const deleteJob = async (req, res, next) => {
 module.exports = {
     getDashboard,
     getColleges,
+    parseJD,
     getJobs,
     getJobProfile,
     getStudentProfile,

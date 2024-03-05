@@ -15,6 +15,7 @@ import RecruiterApplications from "./components/recruiter/recruiterApplications"
 import RecruiterStudentProfile from "./components/recruiter/recruiterStudentProfile";
 import RecruiterProfile from './components/recruiter/recruiterProfile';
 import RecruiterRegister from './components/recruiter/recruiterRegister';
+import UploadJD from "./components/recruiter/uploadJD";
 import CollegeLayout from './components/college/collegeLayout';
 import CollegeRegister from "./components/college/collegeRegister";
 import CollegeProfile from './components/college/collegeProfile';
@@ -53,6 +54,7 @@ const App = () => {
           <Route path='signup' element={<Signup />} />
           <Route path="studentRegister" element={<StudentRegister />} />
           <Route path="uploadResume" element={<UploadResume />} />
+          <Route path="uploadJD" element={<UploadJD />} />
           <Route path="recruiterRegister" element={<RecruiterRegister />} />
           <Route path="collegeRegister" element={<CollegeRegister />} />
 
