@@ -13,7 +13,7 @@ const RecruiterOpening = () => {
         cgpa: "",
         description: (jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"] !== undefined && jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"][0] !== "N/A" ? "Skills required: \n" + jdOutput?.result?.["18 IT Skills, Software tools and Programming Languages with only  Keywords:"].join(", ") : "") +
                      (jdOutput?.result?.["23 Certifications"] !== undefined && jdOutput?.result?.["23 Certifications"][0] !== "N/A" ? "\nCertifications required: \n" + jdOutput?.result?.["23 Certifications"].join(", ") : ""),
-        experience: jdOutput?.result?.["21 Total_years_of_experience_of_each_IT_skill"] !== "N/A" ? jdOutput?.result?.["21 Total_years_of_experience_of_each_IT_skill"] : "",
+        experience: jdOutput?.result?.["17 Overall_number_of_years_of_experience"] !== "N/A" ? jdOutput?.result?.["17 Overall_number_of_years_of_experience"] : "",
         seats: jdOutput?.result?.["12 No_of_positions"] !== "N/A" ? jdOutput?.result?.["12 No_of_positions"] : "",
         package: jdOutput?.result?.["15 Bill_Rate"] !== "N/A" ? jdOutput?.result?.["15 Bill_Rate"] : "",
         applicationFor: "",
@@ -117,7 +117,7 @@ const RecruiterOpening = () => {
                                         <div className="form-floating flex-nowrap">
                                             <select id='application' required className="form-select" value={job.applicationFor} onChange={(e) => setJob(prev => ({ ...prev, applicationFor: e.target.value }))}>
                                                 <option defaultValue=''></option>
-                                                <option value='Everyone'>Everyone</option>
+                                                <option value='Everyone'>Global Pool</option>
                                                 {colleges.map((college, index) => (
                                                     <option key={index} value={college}>{college}</option>
                                                 ))}
