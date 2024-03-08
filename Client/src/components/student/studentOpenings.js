@@ -91,7 +91,7 @@ const StudentOpenings = () => {
                     <h1 className='mb-4 pb-1 pb-md-0 mb-md-3'>Jobs</h1>
                 </div>
                 
-                    {jobs.map((job, index) => (
+                    {jobs.slice().reverse().map((job, index) => (
                         <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         {/* <div className='card-body'> */}
                         <div key={index} className="card-body my-2 px-4 py-2">
