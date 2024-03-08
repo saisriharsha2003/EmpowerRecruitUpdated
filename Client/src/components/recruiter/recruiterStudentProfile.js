@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const RESUMES_URL = 'http://localhost:3500/resumes';
 
@@ -39,6 +41,15 @@ const RecruiterStudentProfile = () => {
         dateOfBirth: '',
         gender: ''
     };
+    const scoreStyle = {
+        padding: '8px 12px', // Adjust padding as needed
+        backgroundColor: '#f5f5f5',// Use a different background color
+        color: '#333', // Text color
+        borderRadius: '4px', // Rounded corners
+        fontSize: '16px', // Adjust font size
+        fontWeight: 'bold', // Make the score bold
+    };
+      
 
     const { id } = useParams();
     const [jobs, setJobs] = useState([]);
@@ -50,6 +61,10 @@ const RecruiterStudentProfile = () => {
     const [certifications, setCertifications] = useState([]);
     const [projects, setProjects] = useState([]);
     const [works, setWorks] = useState([]);
+    const [sent1, setSent1] = useState()
+    const [sent2, setSent2] = useState()
+    const [scores, setScores] = useState({})
+
 
     const axios = useAxiosPrivate();
 
@@ -68,7 +83,7 @@ const RecruiterStudentProfile = () => {
         const fetchStudentProfile = async () => {
             try {
                 const response = await axios.get('/recruiter/studentProfile/' + id);
-
+                // console.log(response.data)
                 const jobs = response?.data?.jobs.map((job) => ({ ...job.jobId, applicationId: job._id }));
                 setJobs(jobs);
 
@@ -86,6 +101,16 @@ const RecruiterStudentProfile = () => {
                 setProjects(student?.projects);
                 setWorks(student?.workExperiences);
                 setResume(student?.resume);
+                setSent1(student?.academic?.currentEducation?.skills.join(','))
+                let studentProfile = '';
+                if (student?.certifications && student?.certifications.length > 0) {
+                    for(let i = 0; i < student?.certifications.length; i++)
+                    {
+                        let temp = student?.certifications[i].name + " " + student?.certifications[i].organization+",";
+                        studentProfile += temp
+                    }
+                }
+                setSent2(studentProfile);
             } catch (err) {
                 notify('failed', err?.response?.data?.message);
             }
@@ -123,6 +148,28 @@ const RecruiterStudentProfile = () => {
         } catch (err) {
             notify('failed', err?.response?.data?.message);
         }
+    }
+
+    const computeCapability = async (jobId,jd) => {
+        try {
+            
+            let studentText = "skills:\n"+sent1+"\n"+"certifications:\n"+sent2
+            const requestBody = {
+                sent1: studentText,
+                sent2: jd
+            };
+    
+            const response = await axios.post('/recruiter/capabilityCal', requestBody)
+            const score = response?.data?.score?.similarity_matrix;
+            console.log(score);
+            setScores(prevScores => ({ ...prevScores, [jobId]: score }));
+            
+            notify('success', "done")
+        } catch (err) {
+            notify('failed', err?.response?.data?.message);
+        }
+        
+
     }
 
     return (
@@ -673,7 +720,9 @@ const RecruiterStudentProfile = () => {
                                     </div>
                                 </section>
 
-                                <div className='d-inline-flex'>
+                                
+
+                                <div className='d-inline-flex mt-2'>
                                     <div className='card-body'>
                                         <button id={index} onClick={handleSelect} className='btn btn-primary'>Select</button>
                                     </div>
@@ -681,6 +730,21 @@ const RecruiterStudentProfile = () => {
                                         <button id={index} onClick={handleReject} className='btn btn-dark'>Reject</button>
                                     </div>
                                 </div>
+
+                                <section className="my-2">
+                                    <div className="container">
+                                        <div className="row">
+                                            <div>
+                                                <Link className="btn btn-dark my-3" onClick={() => computeCapability(job._id,job.description)} role="button">Calculate Capability</Link>
+                                                {scores[job._id] ? (
+                                                <span className="score-span mx-5" style={scoreStyle}>
+                                                    {scores[job._id]}%
+                                                </span>
+                                                ) : null}                                          
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
 
                             </section >
                         </div>

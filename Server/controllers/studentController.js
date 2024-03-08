@@ -71,7 +71,7 @@ const getJobs = async (req, res, next) => {
         const foundStudent = await Student.findById(id).populate('academic').exec();
         if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
 
-        const foundJobs = await Job.find({ applicationFor: { $in: ['Everyone', foundStudent.academic.currentEducation.college] }, collegeApproved: { $ne: false } })
+        const foundJobs = await Job.find({ applicationFor: { $in: ['Everyone', foundStudent.academic.currentEducation.college] }})
             .select('companyName jobRole description')
             .exec();
 
@@ -81,6 +81,32 @@ const getJobs = async (req, res, next) => {
         next(err);
     }
 }
+
+const capabilityCal = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundStudent = await Student.findById(id).exec();
+        if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
+        const { sent1, sent2 } = req.body;
+        const formData = new FormData();
+        formData.append("sent1", sent1)
+        formData.append("sent2", sent2)
+        const score = await axios.post("https://supreme-trout-6qxqw59xxgxh5wqw-5080.app.github.dev/compute_score", formData).then((resp) => {
+            // console.log(resp.data);
+            return resp.data;
+        }).catch((e)=> {
+            console.log(e.data)
+            next(e);
+        })
+        console.log(score)
+        res.status(201).json({score});
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+
 
 const getAppliedJobs = async (req, res, next) => {
     const { id } = req;
@@ -760,6 +786,7 @@ const deleteWork = async (req, res, next) => {
 module.exports = {
     getDashboard,
     getJobs,
+    capabilityCal,
     getAppliedJobs,
     postAppliedJob,
     getStudent,

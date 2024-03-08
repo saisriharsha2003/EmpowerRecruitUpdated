@@ -137,7 +137,7 @@ const getStudents = async (req, res, next) => {
         next(err);
     }
 }
-
+// 
 const getDrives = async (req, res, next) => {
     const { id } = req;
     try {
@@ -146,14 +146,14 @@ const getDrives = async (req, res, next) => {
 
         const foundApprovedJobs = await Job.find({ 
             applicationFor: { 
-                $in: [foundCollege.institution.name, 'Everyone'] 
+                $in: [foundCollege.institution.name] 
             }, 
             collegeApproved: true 
         }).select('jobRole description companyName').exec();
         
         const foundNotApprovedJobs = await Job.find({ 
             applicationFor: { 
-                $in: [foundCollege.institution.name, 'Everyone'] 
+                $in: [foundCollege.institution.name] 
             }, 
             collegeApproved: false 
         }).select('jobRole description companyName').exec();

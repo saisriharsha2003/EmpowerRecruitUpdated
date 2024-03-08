@@ -13,6 +13,8 @@ router.get('/details$', studentController.getStudent);
 
 router.get('/jobs$', studentController.getJobs);
 
+router.post('/capabilityCal$', studentController.capabilityCal);
+
 router.get('/applied$', studentController.getAppliedJobs);
 
 router.get('/jobProfile/:jobId', studentController.getJobProfile);

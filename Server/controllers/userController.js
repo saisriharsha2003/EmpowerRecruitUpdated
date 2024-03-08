@@ -80,7 +80,7 @@ const handleLogin = async (req, res, next) => {
         const query = await foundUser.save();
         res.cookie('jwt', newRefreshToken, { httpOnly: true, sameSite: 'Lax', maxAge: 24 * 60 * 60 * 1000 });
         res.json({
-            'success': `${role} ${username} is logged in hellooooooooooooo!`,
+            'success': `${role} ${username} is logged in hello!`,
             accessToken
         });
     } else {

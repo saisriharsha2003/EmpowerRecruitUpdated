@@ -28,6 +28,8 @@ router.post('/job/new$', recruiterController.postNewJob);
 
 router.post('/application$', recruiterController.postApplication);
 
+router.post('/capabilityCal$', recruiterController.capabilityCal);
+
 router.post('/company$', recruiterController.postCompany);
 
 router.post('/parseJD', resumeUpload.single('jd'), recruiterController.parseJD);

@@ -12,6 +12,9 @@ const axios = require('axios');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.MAIL,
         pass: process.env.PASSWORD
@@ -66,6 +69,31 @@ const getJobs = async (req, res, next) => {
         const foundPostedJobs = await Job.find({ recruiter: id }).exec();
 
         res.json(foundPostedJobs);
+    }
+    catch (err) {
+        next(err);
+    }
+}
+
+const capabilityCal = async (req, res, next) => {
+    const { id } = req;
+    try {
+        const foundRecruiter = await Recruiter.findById(id).exec();
+        if (!foundRecruiter) return res.status(401).json({ 'message': 'unauthorized' });
+
+        const { sent1, sent2 } = req.body;
+        const formData = new FormData();
+        formData.append("sent1", sent1)
+        formData.append("sent2", sent2)
+        const score = await axios.post("https://supreme-trout-6qxqw59xxgxh5wqw-5080.app.github.dev/compute_score", formData).then((resp) => {
+            // console.log(resp.data);
+            return resp.data;
+        }).catch((e)=> {
+            console.log(e.data)
+            next(e);
+        })
+        console.log(score)
+        res.status(201).json({score});
     }
     catch (err) {
         next(err);
@@ -306,7 +334,7 @@ const postApplication = async (req, res, next) => {
         if (!foundStudent) return res.status(400).json({ 'message': 'Student not found' });
 
         const email = foundStudent.contact.email;
-
+        console.log(email);
         const mailOptions = {
             from: process.env.MAIL,
             to: email,
@@ -489,6 +517,7 @@ module.exports = {
     getColleges,
     parseJD,
     getJobs,
+    capabilityCal,
     getJobProfile,
     getStudentProfile,
     getApplications,
