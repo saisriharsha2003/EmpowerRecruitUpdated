@@ -3,7 +3,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
 import { useNavigate } from 'react-router-dom';
 // const RESUMES_URL = 'http://localhost:3500/resumes';
-const RESUMES_URL = 'https://final-year-project-server.vercel.app/tmp/';
+const RESUMES_URL = '/tmp/';
 
 const StudentProfile = () => {
     const [emailOTPSent, setEmailOTPSent] = useState(false);
