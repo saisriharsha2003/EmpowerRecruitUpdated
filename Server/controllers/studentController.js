@@ -600,8 +600,14 @@ const putResume = async (req, res, next) => {
         if (!req.file) return res.status(400).json({ 'message': 'Only pdf are allowed which are lessthan 2 mb' });
 
         const prevResume = foundStudent.resume;
-        const filePath = `resumes/${prevResume}`
-        await fs.unlink(filePath);
+        const filePath = `/tmp/${prevResume}`
+        console.log(filePath)
+        if (fs.existsSync(filePath)) {
+            await fs.unlink(filePath, (err) => {
+                if (err) throw err;
+                console.log(`Previous resume ${prevResume} deleted successfully`);
+            });
+        }
 
         foundStudent.resume = req.file.filename;
         await foundStudent.save();
