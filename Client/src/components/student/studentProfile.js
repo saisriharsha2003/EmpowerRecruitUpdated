@@ -3,7 +3,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import { notify } from '../toast';
 import { useNavigate } from 'react-router-dom';
 // const RESUMES_URL = 'http://localhost:3500/resumes';
-const RESUMES_URL = 'https://final-year-project-server.vercel.app/resumes';
+const RESUMES_URL = 'https://final-year-project-server.vercel.app/tmp/';
 
 const StudentProfile = () => {
     const [emailOTPSent, setEmailOTPSent] = useState(false);
@@ -1935,7 +1935,7 @@ const StudentProfile = () => {
                             <div className='form-row row'>
                                 {resume&&(<div className='col-md-3'>
                                     <div className='card-body'>
-                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume}</a>
+                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume.slice(13,)}</a>
                                     </div>
                                 </div>)}
                             <div className='col-md-9'>
