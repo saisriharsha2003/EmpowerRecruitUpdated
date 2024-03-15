@@ -7,7 +7,6 @@ import '../styles/nav.css'
 import React, { useEffect, useState } from 'react';
 
 
-
 const Layout = () => {
     const navigate = useNavigate();
     const axiosP = useAxiosPrivate();
@@ -104,6 +103,12 @@ const Layout = () => {
         navigate('/');
     }
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleNavbar = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <>
         
@@ -113,15 +118,21 @@ const Layout = () => {
             <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>
                 <div className="container-fluid">
                     <div className='d-flex align-items-center'>
+                        {
+                            !decoded?.userInfo?.username ? null :  <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
+                            <span className="navbar-toggler-icon"></span> {/* Hamburger icon */}
+                        </button>
+                        }
+                            
                         <Link className="navbar-brand mx-5 fs-3 pacifico-regular" to={link || "/"}>Talentrail</Link>    
                     </div>
                     <ul className="navbar-nav d-flex flex-row align-items-center">
                         {!decoded?.userInfo?.username
                             ? <>
-                                <li className="nav-item mx-md-3 mx-lg-4"><a className="nav-link" href="#iirxi">Features</a></li>
-                                <li className="nav-item mx-md-3 mx-lg-4"><a className="nav-link" href="#footer">Contact</a></li>
-                                <li className="nav-item mx-md-3 mx-lg-4"><Link className="nav-link" to="/login">Login</Link></li>
-                                <li className="nav-item mx-md-3 mx-lg-4"><Link className="nav-link" to="/signup">Signup</Link></li>
+                                <li className="nav-item mx-md-3 mx-lg-4 mx-sm-2 mx-xs-1"><a className="nav-link" href="#iirxi">Features</a></li>
+                                <li className="nav-item mx-md-3 mx-lg-4 mx-sm-2 mx-xs-1"><a className="nav-link" href="#footer">Contact</a></li>
+                                <li className="nav-item mx-md-3 mx-lg-4 mx-sm-2 mx-xs-1"><Link className="nav-link" to="/login">Login</Link></li>
+                                <li className="nav-item mx-md-3 mx-lg-4 mx-sm-2 mx-xs-1"><Link className="nav-link" to="/signup">Signup</Link></li>
                             </>
                             : <>
                                 <li className="nav-item mx-1">
@@ -178,93 +189,100 @@ const Layout = () => {
 
                 {decoded?.userInfo?.username &&
                     (
-                        <nav id="ibd6" className="sidebar">
+                        <nav id="ibd6" className={`sidebar ${isOpen ? 'active' : ''}`}>
+                            <div className={`collapse navbar-collapse ${isOpen ? '' : 'show'}`}>
                             {decoded?.userInfo?.role === 'student' && (
                                 <ul className="list-unstyled components sidebar-ul">
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/student'>Dashboard</Link>
+                                        <Link className='nav-link active rounded' to='/user/student'>Dashboard</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/student/jobOpenings'>Job openings</Link>
+                                        <Link className='nav-link active rounded' to='/user/student/jobOpenings'>Job openings</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/student/applied'>Applied jobs</Link>
+                                        <Link className='nav-link active rounded' to='/user/student/applied'>Applied jobs</Link>
                                     </li>
-                                    <li className="sidebar-list">
+                                    {/* <li className="sidebar-list">
                                         <Link className='nav-link active'>Match jobs</Link>
-                                    </li>
+                                    </li> */}
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/student/profile'>Profile</Link>
+                                        <Link className='nav-link active rounded' to='/user/student/profile'>Profile</Link>
                                     </li>
                                 </ul>
                             )}
+                            </div>
+                            <div className={`collapse navbar-collapse ${isOpen ? '' : 'show'}`}>
 
                             {decoded?.userInfo?.role === 'recruiter' && (
                                 <ul className="list-group list-group-flush">
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/recruiter'>Dashboard</Link>
+                                        <Link className='nav-link active rounded' to='/user/recruiter'>Dashboard</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/recruiter/new'>Post new job</Link>
+                                        <Link className='nav-link active rounded' to='/user/recruiter/new'>Post new job</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/recruiter/posted'>Posted jobs</Link>
+                                        <Link className='nav-link active rounded' to='/user/recruiter/posted'>Posted jobs</Link>
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/recruiter/applications'>Applications</Link >
+                                        <Link className='nav-link active rounded' to='/user/recruiter/applications'>Applications</Link >
                                     </li>
                                     <li className="sidebar-list">
-                                        <Link className='nav-link active' to='/user/recruiter/profile'>Profile</Link >
+                                        <Link className='nav-link active rounded' to='/user/recruiter/profile'>Profile</Link >
                                     </li>
                                 </ul >
                             )}
+                            </div>
+                            <div className={`collapse navbar-collapse ${isOpen ? '' : 'show'}`}>
 
                             {
                                 decoded?.userInfo?.role === 'college' && (
                                     <ul className="list-group list-group-flush">
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/college'>Dashboard</Link>
+                                            <Link className='nav-link active rounded' to='/user/college'>Dashboard</Link>
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/college/companies'>Companies</Link>
+                                            <Link className='nav-link active rounded' to='/user/college/companies'>Companies</Link>
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/college/sections'>Sections</Link>
+                                            <Link className='nav-link active rounded' to='/user/college/sections'>Sections</Link>
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/college/drives'>Placement drives</Link>
+                                            <Link className='nav-link active rounded' to='/user/college/drives'>Placement drives</Link>
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/college/profile'>Profile</Link>
+                                            <Link className='nav-link active rounded' to='/user/college/profile'>Profile</Link>
                                         </li>
                                     </ul >
                                 )
                             }
-
+                            </div>
+                            <div className={`collapse navbar-collapse ${isOpen ? '' : 'show'}`}>
                             {
                                 decoded?.userInfo?.role === 'admin' && (
                                     <ul className="list-group list-group-flush">
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin'>Dashboard</Link>
+                                            <Link className='nav-link active rounded' to='/user/admin'>Dashboard</Link>
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin/students'>Students</Link >
+                                            <Link className='nav-link active rounded' to='/user/admin/students'>Students</Link >
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin/recruiters'>Recruiters</Link >
+                                            <Link className='nav-link active rounded' to='/user/admin/recruiters'>Recruiters</Link >
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin/openings'>Openings</Link >
+                                            <Link className='nav-link active rounded' to='/user/admin/openings'>Openings</Link >
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin/selected'>Selected</Link >
+                                            <Link className='nav-link active rounded' to='/user/admin/selected'>Selected</Link >
                                         </li>
                                         <li className="sidebar-list">
-                                            <Link className='nav-link active' to='/user/admin/profile'>Profile</Link >
+                                            <Link className='nav-link active rounded' to='/user/admin/profile'>Profile</Link >
                                         </li>
                                     </ul >
                                 )
                             }
+                            </div>
                         </nav >
                     )
                 }

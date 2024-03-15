@@ -72,7 +72,7 @@ const getJobs = async (req, res, next) => {
         if (!foundStudent) return res.status(401).json({ 'message': 'unauthorized' });
 
         const foundJobs = await Job.find({ applicationFor: { $in: ['Everyone', foundStudent.academic.currentEducation.college] }})
-            .select('companyName jobRole description')
+            .select('companyName jobRole package description')
             .exec();
 
         res.json(foundJobs);

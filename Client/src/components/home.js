@@ -1,9 +1,10 @@
 import React from 'react';
 import '../styles/home.css'
+
 import Footer from './footer';
 
 
-    
+
 
 const Home = () => {
 
@@ -15,7 +16,7 @@ const Home = () => {
 
     return (
         <>
-    
+
             <div data-js="pre-built-section" id="i76o2" className="pre-built-section width100">
                 <section id="hero_ui_07">
                     <div id="inj1t" className="container-fluid">
@@ -118,8 +119,8 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-            
-            
+
+
             <section class='Team dc-sections' id="iip7yv">
                 <div class="container-xl p-md-5">
                     <div id='ii981t' className='p-3 pt-5 mb-4' >
@@ -131,20 +132,20 @@ const Home = () => {
                             <div class="col">
                                 <div class="card procard h-55" >
                                     <div class="card-img-caption">
-                                        <img src="https://drapcode-static.s3.amazonaws.com/pre-built-sections/team/team001/team-1.jpg" class="card-img-top" id="" />
-                                        <p style={{backgroundColor:"#493fe5", color:"#fff"}} className='card-text text-center'>Team Lead</p>
+                                        <img src={require('./images/rajesh.jpeg')} class="card-img-top" id="" height={325} />
+                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Lead</p>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">Rajesh</h5>
-                                        <p class="card-text">20BQ1A4213</p>
-                                </div>
+                                        <p class="card-text">20BQ1A4247</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card procard h-55" >
                                     <div class="card-img-caption">
-                                        <img src="https://drapcode-static.s3.amazonaws.com/pre-built-sections/team/team001/team-2.jpg" class="card-img-top" />
-                                        <p style={{backgroundColor:"#493fe5", color:"#fff"}} className='card-text text-center'>Team Member 1</p>
+                                        <img src={require('./images/harsha.jpeg')} class="card-img-top" height={325}/>
+                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Member 1</p>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">Harsha</h5>
@@ -155,25 +156,25 @@ const Home = () => {
                             <div class="col">
                                 <div class="card procard h-55" >
                                     <div class="card-img-caption">
-                                        <img src="https://drapcode-static.s3.amazonaws.com/pre-built-sections/team/team001/team-3.jpg" class="card-img-top"  />
-                                        <p style={{backgroundColor:"#493fe5", color:"#fff"}} className='card-text text-center'>Team Member 2</p>
+                                        <img src={require('./images/joseph.jpeg')} class="card-img-top" height={325}/>
+                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Member 2</p>
                                     </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Joseph</h5>
-                                    <p class="card-text">20BQ1A4208</p>
-                                </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Joseph</h5>
+                                        <p class="card-text">20BQ1A4208</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="card procard h-55" >
                                     <div class="card-img-caption">
-                                        <img src="https://drapcode-static.s3.amazonaws.com/pre-built-sections/team/team001/team-4.jpg" class="card-img-top"/>
-                                        <p style={{backgroundColor:"#493fe5", color:"#fff"}} className='card-text text-center'>Team Member 3</p>
+                                        <img src={require('./images/vara.jpeg')} class="card-img-top" height={325}/>
+                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Member 2</p>
                                     </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Vara</h5>
-                                    <p class="card-text">20BQ1A4217</p>
-                                </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Joseph</h5>
+                                        <p class="card-text">20BQ1A4217</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +185,7 @@ const Home = () => {
             <Footer />
 
 
-                
+
 
         </>
     )

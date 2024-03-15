@@ -61,228 +61,237 @@ const StudentJobProfile = () => {
     return (
         <>
 
-            <div className='d-flex justify-content-center align-items-center my-5'>
+            <div className='container-auto vh-100 d-flex justify-content-center align-items-center'>
 
-                <section className="card mx-5 p-3" style={{ width: '38rem' }}>
+                <div className='row'>
+                    <div className='col-md-6'>
+                        <section className="card mx-5 p-4 shadow overflow-auto" style={{ width: '100%', maxHeight: '40rem', scrollbarWidth: 'thin'}}>
 
-                    <section className="mb-3">
-                        <div className="container">
-                            <div className="row">
-                                <div>
-                                    <h1>Job profile</h1>
+                            <section className="mb-3">
+                                <div className="container">
+                                    <div className="row">
+                                        <div>
+                                            <h2 className='card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3'>Job profile</h2>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Company name</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Company name</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.companyName}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.companyName}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Job role</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Job role</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.jobRole}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.jobRole}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>CGPA</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>CGPA</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.cgpa}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.cgpa}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Description</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Description</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.description}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.description}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Experience</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Experience</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.experience}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.experience}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Seats</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Seats</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.seats}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.seats}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <h5>Package</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <h5>Package</h5>
+                                        </div>
+                                        <div style={{ width: '20rem' }}>
+                                            <div className="card-title">{job.package}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '20rem' }}>
-                                    <div className="card-title">{job.package}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '15rem' }}>
-                                    <button onClick={handleJobApplication} className='btn btn-primary'>Apply</button>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '15rem' }}>
+                                            <button onClick={handleJobApplication} className='btn btn-primary my-3'>Apply</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                </section>
+                        </section>
 
-                <section className="card mx-5 p-3" style={{ width: '30rem' }}>
+                    </div>
 
-                    <section className="mb-3">
-                        <div className="container">
-                            <div className="row">
-                                <div>
-                                    <h1>Company profile</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Name</h5>
-                                </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.name}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <div className='col-md-6'>
+                        <section className="card mx-5 p-4 shadow overflow-auto" style={{ width: '100%', maxHeight: '50rem', scrollbarWidth: 'thin' }}>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Industry</h5>
+                            <section className="mb-3">
+                                <div className="container">
+                                    <div className="row">
+                                        <div>
+                                            <h2 className='card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3'>Company profile</h2>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.industry}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Size</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Name</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.name}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.size}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Website</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Industry</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.industry}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.website}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Address</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Size</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.size}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.address}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Mobile</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Website</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.website}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.mobile}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                    <section className="my-2">
-                        <div className="container">
-                            <div className="row">
-                                <div style={{ width: '10rem' }}>
-                                    <h5>Overview</h5>
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Address</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.address}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style={{ width: '15rem' }}>
-                                    <div className="card-title">{company.overview}</div>
+                            </section>
+
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Mobile</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.mobile}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </section>
+                            </section>
 
-                </section >
+                            <section className="my-2">
+                                <div className="container">
+                                    <div className="row">
+                                        <div style={{ width: '10rem' }}>
+                                            <h5>Overview</h5>
+                                        </div>
+                                        <div style={{ width: '15rem' }}>
+                                            <div className="card-title">{company.overview}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
 
+                        </section >
+                    </div>
+
+
+                </div>
             </div>
 
         </>

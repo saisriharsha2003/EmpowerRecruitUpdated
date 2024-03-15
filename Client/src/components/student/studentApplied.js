@@ -4,6 +4,7 @@ import { notify } from '../toast';
 
 const StudentApplied = () => {
     const [appliedJobs, setAppliedJobs] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const axios = useAxiosPrivate();
 
@@ -11,8 +12,7 @@ const StudentApplied = () => {
         const fetchApplied = async () => {
             try {
                 const response = await axios.get('/student/applied');
-
-                const appliedJobs = response?.data
+                const appliedJobs = response?.data;
                 setAppliedJobs(appliedJobs);
             } catch (err) {
                 notify('failed', err?.response?.data?.message);
@@ -21,15 +21,33 @@ const StudentApplied = () => {
         fetchApplied();
     }, [axios]);
 
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    }
+
+    const filteredJobs = appliedJobs.filter((job) =>
+        job.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        job.jobRole.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <>
+            <div className="card m-4 shadow">
+                <div className="card-body table-responsive" style={{ padding: '2rem' }}>
+                    <div className="input-group mb-4 mt-1 rounded" style={{ maxWidth: '500px' }}>
+                        <span className="input-group-text"><i className="bi bi-search"></i></span>
+                        <input
+                            type="text"
+                            placeholder="Search by company name or job role..."
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                            className="form-control"
+                            style={{ outline: 'none', boxShadow: 'none' }}
 
-            <div className="card m-2 mx-5" >
-                <div className="card-body">
-
+                        />
+                    </div>
                     <table className="table table-hover">
-
-                        <thead>
+                        <thead className='thead-dark'>
                             <tr>
                                 <th scope="col">Job id</th>
                                 <th scope="col">Company name</th>
@@ -39,10 +57,8 @@ const StudentApplied = () => {
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
-
                         <tbody>
-
-                            {appliedJobs.map((job, index) => (
+                            {filteredJobs.map((job, index) => (
                                 <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{job.companyName}</td>
@@ -52,17 +68,12 @@ const StudentApplied = () => {
                                     <td>{job.status}</td>
                                 </tr>
                             ))}
-
                         </tbody>
-
                     </table>
-
                 </div>
             </div>
-
         </>
     )
-
 }
 
 export default StudentApplied;
