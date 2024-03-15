@@ -1935,7 +1935,7 @@ const StudentProfile = () => {
                             <div className='form-row row'>
                                 {resume&&(<div className='col-md-3'>
                                     <div className='card-body'>
-                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume.slice(13,)}</a>
+                                    <a href={`${RESUMES_URL}/${resume}`} className='link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover'>{resume}</a>
                                     </div>
                                 </div>)}
                             <div className='col-md-9'>
