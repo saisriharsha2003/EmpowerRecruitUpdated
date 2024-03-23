@@ -169,7 +169,7 @@ const Home = () => {
                                 <div class="card procard h-55" >
                                     <div class="card-img-caption">
                                         <img src={require('./images/vara.jpeg')} class="card-img-top" height={325}/>
-                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Member 2</p>
+                                        <p style={{ backgroundColor: "#493fe5", color: "#fff" }} className='card-text text-center'>Team Member 3</p>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title">Joseph</h5>

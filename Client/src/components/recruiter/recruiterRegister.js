@@ -93,166 +93,182 @@ const RecruiterRegister = () => {
     return (
         <>
 
-            <div className='d-flex justify-content-center mt-3'>
-                <h3>Provide all details</h3>
+            <div className='d-flex justify-content-center mt-4'>
+                <h2>Provide all details</h2>
             </div>
 
             {/* Compay */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
-                        <form className="card-body">
+                {/* <div className='d-inline-flex p-2'> */}
+                {/* <div className='row'> */}
+                <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm mb-5" style={{ backgroundColor: '#fff' }}>
+                    <form className="card-body">
 
-                            <fieldset disabled={disabled.company}>
+                        <fieldset disabled={disabled.company}>
 
-                                <h2>Company</h2>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Company</h3>
+                            <div className='row form-row'>
 
-                                <div className='d-flex flex-row'>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='cn'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Name'
-                                                    autoComplete='off'
-                                                    value={company.name}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, name: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='cn'>Name</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='ci'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Industry'
-                                                    autoComplete='off'
-                                                    value={company.industry}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, industry: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='ci'>Industry</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='cs'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Size'
-                                                    autoComplete='off'
-                                                    value={company.size}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, size: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='cs'>Size</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='cw'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Website'
-                                                    autoComplete='off'
-                                                    value={company.website}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, website: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='cw'>Website</label>
-                                            </div>
+                                <div className='col-md-6'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='cn'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Name'
+                                                autoComplete='off'
+                                                value={company.name}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, name: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='cn'>Name</label>
                                         </div>
                                     </div>
 
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <textarea
-                                                    id='ca'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Address'
-                                                    autoComplete='off'
-                                                    value={company.address}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, address: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='ca'>Address</label>
-                                            </div>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='ci'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Industry'
+                                                autoComplete='off'
+                                                value={company.industry}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, industry: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='ci'>Industry</label>
                                         </div>
+                                    </div>
 
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='cm'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Mobile'
-                                                    minLength={10}
-                                                    maxLength={10}
-                                                    autoComplete='off'
-                                                    value={company.mobile}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, mobile: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='cm'>Mobile</label>
-                                            </div>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='cs'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Size'
+                                                autoComplete='off'
+                                                value={company.size}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, size: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='cs'>Size</label>
                                         </div>
+                                    </div>
 
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <textarea
-                                                    id='co'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Overview'
-                                                    autoComplete='off'
-                                                    value={company.overview}
-                                                    onChange={(e) => setCompany(prev => ({ ...prev, overview: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='co'>Overview</label>
-                                            </div>
+
+                                </div>
+
+                                <div className='col-md-6'>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='cw'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Website'
+                                                autoComplete='off'
+                                                value={company.website}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, website: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='cw'>Website</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='cm'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Mobile'
+                                                minLength={10}
+                                                maxLength={10}
+                                                autoComplete='off'
+                                                value={company.mobile}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, mobile: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='cm'>Mobile</label>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div className='form-row row'>
+                                <div className='col-md-12'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <textarea
+                                                id='ca'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Address'
+                                                autoComplete='off'
+                                                value={company.address}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, address: e.target.value }))}
+                                                required
+                                                style={{ height: "150px" }}
+                                            />
+                                            <label htmlFor='ca'>Address</label>
                                         </div>
                                     </div>
 
                                 </div>
+                            </div>
+                            <div className='form-row row'>
+                                <div className='col-md-12'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <textarea
+                                                id='co'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Overview'
+                                                autoComplete='off'
+                                                value={company.overview}
+                                                onChange={(e) => setCompany(prev => ({ ...prev, overview: e.target.value }))}
+                                                required
+                                                style={{ height: "150px" }}
 
-                                <div className="card-body">
-                                    <button className="btn btn-primary" onClick={handleCompany}>submit</button>
+                                            />
+                                            <label htmlFor='co'>Overview</label>
+                                        </div>
+                                    </div>
+
                                 </div>
+                            </div>
 
-                            </fieldset>
+                            <div className="card-body">
+                                <button className="btn btn-primary" onClick={handleCompany}>submit</button>
+                            </div>
 
-                        </form>
-                    </div>
+                        </fieldset>
+
+                    </form>
                 </div>
+                {/* </div> */}
             </div>
 
             {/* Recruiter Detail */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm mb-5" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <fieldset disabled={disabled.recruiterDetail}>
 
-                                <h2>Recruiter</h2>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Recruiter</h3>
 
-                                <div className='d-flex flex-row'>
+                                <div className='row form-row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -304,7 +320,7 @@ const RecruiterRegister = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -348,40 +364,48 @@ const RecruiterRegister = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Profile */}
             <div className='d-flex justify-content-center align-items-end m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm mb-5" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
-                            <h2>Profile</h2>
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Profile</h3>
 
-                            <div className="card-body">
-                                <div className="flex-nowrap">
-                                    <label htmlFor="profile" className="form-label"><b>Profile pic</b></label>
+                        <div className="form-row row mb-4">
+                                <div className="form-group col-md-9">
+                                    <label htmlFor="profile" className="form-label">
+                                        <b>Profile pic </b>
+                                        (File should be less than 2mb and
+                                        only jpeg, jpg and png's allowed)
+                                    </label>
                                     <input
-                                        className="form-control"
+                                        className="form-control mt-lg-4"
                                         type="file"
                                         id="profile"
-                                        name='profile'
+                                        name="profile"
                                     />
                                 </div>
-                                <div className='d-flex flex-row'>
-                                    <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label>
-                                    <button className="btn btn-primary m-2" onClick={handleLogo}>upload</button>
+                                <div className="form-group col-md-2 mt-4 mt-md-5">
+                                <button
+                                        className="btn btn-primary m-2"
+                                        onClick={handleLogo}
+                                    >
+                                        upload
+                                    </button>   
                                 </div>
                             </div>
 
                         </form>
-                    </div>
+                    {/* </div> */}
                 </div>
 
-                <div className='d-inline-flex p-2'>
+                {/* <div className='d-inline-flex p-2'>
                     <Link className="btn btn-primary" to="/recruiter">Home</Link>
-                </div>
+                </div> */}
 
             </div>
 

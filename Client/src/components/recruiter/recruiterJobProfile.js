@@ -61,15 +61,17 @@ const RecruiterJobProfile = () => {
     return (
         <>
 
-            <div className='d-flex justify-content-center align-items-center my-5'>
+            <div className='container-auto vh-100 d-flex justify-content-center align-items-center my-5'>
+                <div className='row'>
+                <div className='col-md-6'>
 
-                <section className="card mx-5 p-3" style={{ width: '38rem' }}>
+                <section className="card mx-5 p-3 overflow-auto shadow" style={{ width: '100%', maxHeight: '40rem', scrollbarWidth: 'thin'}}>
 
                     <section className="mb-3">
                         <div className="container">
                             <div className="row">
                                 <div>
-                                    <h1>Job profile</h1>
+                                    <h2 className='card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3'>Job profile</h2>
                                 </div>
                             </div>
                         </div>
@@ -177,14 +179,16 @@ const RecruiterJobProfile = () => {
                     </section>
 
                 </section >
+                </div>
+                <div className='col-md-6'>
 
-                <section className="card mx-5 p-3" style={{ width: '30rem' }}>
+                <section className="card mx-5 p-3 overflow-auto shadow" style={{ width: '100%', maxHeight: '40rem', scrollbarWidth: 'thin'}}>
 
                     <section className="mb-3">
                         <div className="container">
                             <div className="row">
                                 <div>
-                                    <h1>Company profile</h1>
+                                    <h2 className='card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3'>Company profile</h2>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +286,8 @@ const RecruiterJobProfile = () => {
                     </section>
 
                 </section >
-
+                </div>
+                </div>
             </div>
 
         </>

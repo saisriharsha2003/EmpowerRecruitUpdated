@@ -174,12 +174,11 @@ const RecruiterProfile = () => {
 
             {/* Compay */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Company</h2>
+                                <h2 className='mb-4 pb-1 pb-md-0 mb-md-4'>Company</h2>
 
                                 {disabled.company && (
                                     <div >
@@ -190,9 +189,10 @@ const RecruiterProfile = () => {
 
                             <fieldset disabled={disabled.company}>
 
-                                <div className='d-flex flex-row'>
+                                <div className='from-row row'>
 
-                                    <div>
+
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -258,7 +258,7 @@ const RecruiterProfile = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <textarea
@@ -297,6 +297,7 @@ const RecruiterProfile = () => {
                                             <div className="flex-nowrap form-floating">
                                                 <textarea
                                                     id='co'
+                                                    style={{ minHeight: '147px', height: 'auto' }}
                                                     className="form-control"
                                                     type="text"
                                                     placeholder='Overview'
@@ -309,7 +310,6 @@ const RecruiterProfile = () => {
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div className="card-body">
@@ -319,18 +319,18 @@ const RecruiterProfile = () => {
                             </fieldset>
 
                         </form>
-                    </div>
+                    
                 </div>
             </div>
 
             {/* Recruiter Detail */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Recruiter</h2>
+                                <h2 className='mb-4 pb-1 pb-md-0 mb-md-4'>Recruiter</h2>
 
                                 {disabled.recruiterDetail && (
                                     <div >
@@ -341,9 +341,9 @@ const RecruiterProfile = () => {
 
                             <fieldset disabled={disabled.recruiterDetail}>
 
-                                <div className='d-flex flex-row'>
+                            <div className='from-row row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -395,7 +395,7 @@ const RecruiterProfile = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -439,18 +439,46 @@ const RecruiterProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Profile */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
-                            <h2>Profile</h2>
+                            <h2 className='mb-4 pb-1 pb-md-0 mb-md-4'>Profile</h2>
 
-                            <div className='d-flex align-items-center'>
+                            <div className='form-row row'>
+
+                                <div className='col-md-3'>
+                                    <div className='card-body'>
+                                {       profile && <img className="rounded-circle " src={profile} height={'120'} width={'120'} alt='profile' />}
+                                    </div>
+                                </div>
+                                <div className="col-md-9">
+                                    <div className='card-body'>
+                                    <div className="flex-nowrap">
+                                        <label htmlFor="profile" className="form-label"><b>Change Profile pic</b> (File should be less than 2mb and
+                                        only jpeg, jpg and png's allowed)</label>
+                                        <input
+                                            className="form-control"
+                                            type="file"
+                                            id="profile"
+                                            name='profile'
+                                        />
+                                    </div>
+                                    {/* <div className='d-flex flex-row'> */}
+                                        {/* <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label> */}
+                                        <button className="btn btn-primary mt-3" onClick={handleLogo}>upload</button>
+                                    {/* </div> */}
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            {/* <div className='d-flex align-items-center'>
 
                                 {profile && <img src={profile} height={'100'} alt='profile' />}
 
@@ -470,21 +498,21 @@ const RecruiterProfile = () => {
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> */}
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Account */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#fff' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm mb-5" style={{ backgroundColor: '#fff' }}>
                         <form className="card-body">
 
                             <div className='d-flex justify-content-between'>
-                                <h2>Account</h2>
+                                <h2 className='mb-4 pb-1 pb-md-0 mb-md-4'>Account</h2>
 
                                 {disabled.account && (
                                     <div >
@@ -495,9 +523,9 @@ const RecruiterProfile = () => {
 
                             <fieldset disabled={disabled.account}>
 
-                                <div className='d-flex flex-row'>
+                            <div className='from-row row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="form-floating flex-nowrap">
@@ -523,7 +551,7 @@ const RecruiterProfile = () => {
 
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
 
                                         <div className="card-body">
                                             <div className="form-floating flex-nowrap">
@@ -571,7 +599,7 @@ const RecruiterProfile = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
         </>
