@@ -194,7 +194,7 @@ const CollegeDashboard = () => {
                 <div className='col-md-6 col-sm-12'>
                     <div className='card m-4 shadow-sm' height="1000px" width="1000px">
                         <div className="card-body my-2 px-4 py-2">
-                            <h2 className="card-title mb-3 mb-4 pb-1 mt-2 pb-md-0 mb-md-3">Job Analytics</h2>
+                            <h2 className="card-title mb-3 mb-4 pb-1 mt-2 pb-md-0 mb-md-3">Placement Analytics</h2>
                             {/* <div className='card shadow'> */}
                             <Bar data={barChartData} options={barChartOptions} className='mb-2 p-2' />
                             {/* </div> */}
@@ -207,7 +207,7 @@ const CollegeDashboard = () => {
                 <div className='col-md-6 col-sm-12'>
                     <div className='card m-4 shadow-sm' height="1000px" width="1000px">
                         <div className="card-body my-2 px-4 py-2">
-                            <h2 className="card-title mb-3 mt-2 mb-4 pb-1 pb-md-0 mb-md-3">Your Analytics</h2>
+                            <h2 className="card-title mb-3 mt-2 mb-4 pb-1 pb-md-0 mb-md-3">Drives Analytics</h2>
                             {/* <div className='card shadow'> */}
                             <Doughnut data={doughnutChartData} options={doughnutChartOptions} className='mb-2 p-2' />
                             {/* </div> */}
