@@ -33,7 +33,7 @@ const CollegeCompanies = () => {
                 <div className='d-flex flex-row justify-content-evenly mx-5 my-2'>
 
                     {recruiters.map((recrutier, index) => (
-                        <div key={index} className="card text-center my-2 px-4 py-2" style={{ width: '15rem' }}>
+                        <div key={index} className="card shadow container text-center my-2 px-4 py-2" style={{ width: '15rem' }}>
                             <Link className="nav-link" to={recrutier._id}>
                                 <div className='card-body p-2'>
                                     <b>{recrutier?.company?.name}</b>

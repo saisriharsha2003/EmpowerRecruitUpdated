@@ -257,472 +257,87 @@ const CollegeProfile = () => {
 
             {/* Institution */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
 
-                            <div className='d-flex justify-content-between'>
-                                <h2>Institution</h2>
-
-                                {disabled.institution && (
-                                    <div >
-                                        <button onClick={(e) => setDisabled(prev => ({ ...prev, institution: false }))} className="btn btn-danger">Edit</button>
-                                    </div>
-                                )}
-                            </div>
-
-                            <fieldset disabled={disabled.institution}>
-
-                                <div className='d-flex flex-row'>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='in'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Name'
-                                                    autoComplete='off'
-                                                    value={institution.name}
-                                                    onChange={(e) => setInstitution(prev => ({ ...prev, name: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='in'>Name</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='iw'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Website'
-                                                    autoComplete='off'
-                                                    value={institution.website}
-                                                    onChange={(e) => setInstitution(prev => ({ ...prev, website: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='iw'>Website</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='ia'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Address'
-                                                    autoComplete='off'
-                                                    value={institution.address}
-                                                    onChange={(e) => setInstitution(prev => ({ ...prev, address: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='ia'>Address</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='im'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Mobile'
-                                                    autoComplete='off'
-                                                    value={institution.mobile}
-                                                    onChange={(e) => setInstitution(prev => ({ ...prev, mobile: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='im'>Mobile</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                        <div className='d-flex justify-content-between'>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Institution</h3>
+                            {disabled.institution && (
+                                <div >
+                                    <button onClick={(e) => setDisabled(prev => ({ ...prev, institution: false }))} className="btn btn-danger">Edit</button>
                                 </div>
-
-                                <div className="card-body">
-                                    <button className="btn btn-success" onClick={handleInstitution}>submit</button>
-                                </div>
-
-                            </fieldset>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            {/* Principal */}
-            <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
-
-                            <div className='d-flex justify-content-between'>
-                                <h2>Principal</h2>
-
-                                {disabled.principal && (
-                                    <div >
-                                        <button onClick={(e) => setDisabled(prev => ({ ...prev, principal: false }))} className="btn btn-danger">Edit</button>
-                                    </div>
-                                )}
-                            </div>
-
-                            <fieldset disabled={disabled.principal}>
-
-                                <div className='d-flex flex-row'>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='pf'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Full name'
-                                                    autoComplete='off'
-                                                    value={principal.fullName}
-                                                    onChange={(e) => setPrincipal(prev => ({ ...prev, fullName: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='pf'>Full name</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='prp'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Position'
-                                                    autoComplete='off'
-                                                    value={principal.position}
-                                                    onChange={(e) => setPrincipal(prev => ({ ...prev, position: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='prp'>Position</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='pe'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Email'
-                                                    autoComplete='off'
-                                                    value={principal.email}
-                                                    onChange={(e) => setPrincipal(prev => ({ ...prev, email: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='pe'>Email</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='pm'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Mobile'
-                                                    autoComplete='off'
-                                                    value={principal.mobile}
-                                                    onChange={(e) => setPrincipal(prev => ({ ...prev, mobile: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='pm'>Mobile</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div className="card-body">
-                                    <button className="btn btn-success" onClick={handlePrincipal}>submit</button>
-                                </div>
-
-                            </fieldset>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            {/* Placement */}
-            <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
-
-                            <div className='d-flex justify-content-between'>
-                                <h2>Placement</h2>
-
-                                {disabled.placement && (
-                                    <div >
-                                        <button onClick={(e) => setDisabled(prev => ({ ...prev, placement: false }))} className="btn btn-danger">Edit</button>
-                                    </div>
-                                )}
-                            </div>
-
-                            <fieldset disabled={disabled.placement}>
-
-                                <div className='d-flex flex-row'>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='plf'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Full name'
-                                                    autoComplete='off'
-                                                    value={placement.fullName}
-                                                    onChange={(e) => setPlacement(prev => ({ ...prev, fullName: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='plf'>Full name</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='plp'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Position'
-                                                    autoComplete='off'
-                                                    value={placement.position}
-                                                    onChange={(e) => setPlacement(prev => ({ ...prev, position: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='plp'>Position</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='ple'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Email'
-                                                    autoComplete='off'
-                                                    value={placement.email}
-                                                    onChange={(e) => setPlacement(prev => ({ ...prev, email: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='ple'>Email</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="flex-nowrap form-floating">
-                                                <input
-                                                    id='plm'
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Mobile'
-                                                    autoComplete='off'
-                                                    value={placement.mobile}
-                                                    onChange={(e) => setPlacement(prev => ({ ...prev, mobile: e.target.value }))}
-                                                    required
-                                                />
-                                                <label htmlFor='plm'>Mobile</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div className="card-body">
-                                    <button className="btn btn-success" onClick={handlePlacement}>submit</button>
-                                </div>
-
-                            </fieldset>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            {/* Course */}
-            {courses.map((course, index) => {
-                return (
-                    <div key={index} className='d-flex justify-content-center m-3'>
-                        <div className='d-inline-flex p-2'>
-                            <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                                <form className="card-body">
-
-                                    <div className='d-flex justify-content-between'>
-                                        <h2>Course {index + 1}</h2>
-
-                                        {disabled.course && (
-                                            <div >
-                                                <button onClick={(e) => setDisabled(prev => ({ ...prev, course: false }))} className="btn btn-danger">Edit</button>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <fieldset disabled={disabled.course}>
-
-                                        <div className='d-flex flex-row'>
-
-                                            <div>
-                                                <div className="card-body">
-                                                    <div className="flex-nowrap form-floating">
-                                                        <input
-                                                            id={index + 'cn'}
-                                                            className="form-control"
-                                                            type="text"
-                                                            placeholder='Name'
-                                                            autoComplete='off'
-                                                            value={course.name}
-                                                            onChange={(e) =>
-                                                                setCourses(prev => {
-                                                                    prev[index].name = e.target.value
-                                                                    return [...prev]
-                                                                })}
-                                                            required
-                                                        />
-                                                        <label htmlFor={index + 'cn'}>Name</label>
-                                                    </div>
-                                                </div>
-
-                                                <div className="card-body">
-                                                    <div className="flex-nowrap form-floating">
-                                                        <input
-                                                            id={index + 'cd'}
-                                                            className="form-control"
-                                                            type="text"
-                                                            placeholder='Duration'
-                                                            autoComplete='off'
-                                                            value={course.duration}
-                                                            onChange={(e) =>
-                                                                setCourses(prev => {
-                                                                    prev[index].duration = e.target.value
-                                                                    return [...prev]
-                                                                })}
-                                                            required
-                                                        />
-                                                        <label htmlFor={index + 'cd'}>Duration</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div className="card-body">
-                                                    <div className="flex-nowrap form-floating">
-                                                        <input
-                                                            id={index + 'cs'}
-                                                            className="form-control"
-                                                            type="text"
-                                                            placeholder='Specialization'
-                                                            autoComplete='off'
-                                                            value={course.specialization}
-                                                            onChange={(e) =>
-                                                                setCourses(prev => {
-                                                                    prev[index].specialization = e.target.value
-                                                                    return [...prev]
-                                                                })}
-                                                            required
-                                                        />
-                                                        <label htmlFor={index + 'cs'}>Specialization</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div className='d-inline-flex'>
-                                            <div className="card-body">
-                                                <button id={index + 'cbs'} className="btn btn-success" onClick={handleCourse}>edit</button>
-                                            </div>
-
-                                            <div className="card-body">
-                                                <button id={index + 'cbd'} className="btn btn-danger" onClick={deleteCourse}>delete</button>
-                                            </div>
-                                        </div>
-
-                                    </fieldset>
-
-                                </form>
-                            </div>
+                            )}
                         </div>
-                    </div>
-                )
-            })}
 
-            {/* New course */}
-            <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
+                        <fieldset disabled={disabled.institution}>
 
-                            <h2>New course</h2>
+                            <div className='row form-row'>
 
-                            <div className='d-flex flex-row'>
-
-                                <div>
+                                <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
-                                                id='cn'
+                                                id='in'
                                                 className="form-control"
                                                 type="text"
                                                 placeholder='Name'
                                                 autoComplete='off'
-                                                value={newCourse.name}
-                                                onChange={(e) => setNewCourse(prev => ({ ...prev, name: e.target.value }))}
+                                                value={institution.name}
+                                                onChange={(e) => setInstitution(prev => ({ ...prev, name: e.target.value }))}
                                                 required
                                             />
-                                            <label htmlFor='cn'>Name</label>
+                                            <label htmlFor='in'>Name</label>
                                         </div>
                                     </div>
 
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
-                                                id='cd'
+                                                id='iw'
                                                 className="form-control"
                                                 type="text"
-                                                placeholder='Duration'
+                                                placeholder='Website'
                                                 autoComplete='off'
-                                                value={newCourse.duration}
-                                                onChange={(e) => setNewCourse(prev => ({ ...prev, duration: e.target.value }))}
+                                                value={institution.website}
+                                                onChange={(e) => setInstitution(prev => ({ ...prev, website: e.target.value }))}
                                                 required
                                             />
-                                            <label htmlFor='cd'>Duration</label>
+                                            <label htmlFor='iw'>Website</label>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className='col-md-6'>
                                     <div className="card-body">
                                         <div className="flex-nowrap form-floating">
                                             <input
-                                                id='cs'
+                                                id='ia'
                                                 className="form-control"
                                                 type="text"
-                                                placeholder='Specialization'
+                                                placeholder='Address'
                                                 autoComplete='off'
-                                                value={newCourse.specialization}
-                                                onChange={(e) => setNewCourse(prev => ({ ...prev, specialization: e.target.value }))}
+                                                value={institution.address}
+                                                onChange={(e) => setInstitution(prev => ({ ...prev, address: e.target.value }))}
                                                 required
                                             />
-                                            <label htmlFor='cs'>Specialization</label>
+                                            <label htmlFor='ia'>Address</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='im'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Mobile'
+                                                autoComplete='off'
+                                                value={institution.mobile}
+                                                onChange={(e) => setInstitution(prev => ({ ...prev, mobile: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='im'>Mobile</label>
                                         </div>
                                     </div>
                                 </div>
@@ -730,138 +345,526 @@ const CollegeProfile = () => {
                             </div>
 
                             <div className="card-body">
-                                <button className="btn btn-success" onClick={handleNewCourse}>submit</button>
+                                <button className="btn btn-success" onClick={handleInstitution}>submit</button>
                             </div>
 
-                        </form>
+                        </fieldset>
+
+                    </form>
+                </div>
+                {/* </div> */}
+            </div>
+
+            {/* Principal */}
+            <div className='d-flex justify-content-center m-3'>
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
+
+                        <div className='d-flex justify-content-between'>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Principal</h3>
+                            {disabled.principal && (
+                                <div >
+                                    <button onClick={(e) => setDisabled(prev => ({ ...prev, principal: false }))} className="btn btn-danger">Edit</button>
+                                </div>
+                            )}
+                        </div>
+
+                        <fieldset disabled={disabled.principal}>
+
+                            <div className='row form-row'>
+
+                                <div className='col-md-6'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='pf'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Full name'
+                                                autoComplete='off'
+                                                value={principal.fullName}
+                                                onChange={(e) => setPrincipal(prev => ({ ...prev, fullName: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='pf'>Full name</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='prp'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Position'
+                                                autoComplete='off'
+                                                value={principal.position}
+                                                onChange={(e) => setPrincipal(prev => ({ ...prev, position: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='prp'>Position</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-md-6'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='pe'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Email'
+                                                autoComplete='off'
+                                                value={principal.email}
+                                                onChange={(e) => setPrincipal(prev => ({ ...prev, email: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='pe'>Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='pm'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Mobile'
+                                                autoComplete='off'
+                                                value={principal.mobile}
+                                                onChange={(e) => setPrincipal(prev => ({ ...prev, mobile: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='pm'>Mobile</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="card-body">
+                                <button className="btn btn-success" onClick={handlePrincipal}>submit</button>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+                </div>
+                {/* </div> */}
+            </div>
+
+            {/* Placement */}
+            <div className='d-flex justify-content-center m-3'>
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
+
+                        <div className='d-flex justify-content-between'>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Placement</h3>
+                            {disabled.placement && (
+                                <div >
+                                    <button onClick={(e) => setDisabled(prev => ({ ...prev, placement: false }))} className="btn btn-danger">Edit</button>
+                                </div>
+                            )}
+                        </div>
+
+                        <fieldset disabled={disabled.placement}>
+
+                            <div className='row form-row'>
+
+                                <div className='col-md-6'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='plf'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Full name'
+                                                autoComplete='off'
+                                                value={placement.fullName}
+                                                onChange={(e) => setPlacement(prev => ({ ...prev, fullName: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='plf'>Full name</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='plp'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Position'
+                                                autoComplete='off'
+                                                value={placement.position}
+                                                onChange={(e) => setPlacement(prev => ({ ...prev, position: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='plp'>Position</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='col-md-6'>
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='ple'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Email'
+                                                autoComplete='off'
+                                                value={placement.email}
+                                                onChange={(e) => setPlacement(prev => ({ ...prev, email: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='ple'>Email</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="flex-nowrap form-floating">
+                                            <input
+                                                id='plm'
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Mobile'
+                                                autoComplete='off'
+                                                value={placement.mobile}
+                                                onChange={(e) => setPlacement(prev => ({ ...prev, mobile: e.target.value }))}
+                                                required
+                                            />
+                                            <label htmlFor='plm'>Mobile</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="card-body">
+                                <button className="btn btn-success" onClick={handlePlacement}>submit</button>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+                </div>
+                {/* </div> */}
+            </div>
+
+            {/* Course */}
+            {courses.map((course, index) => {
+                return (
+                    <div key={index} className='d-flex justify-content-center m-3'>
+                        {/* <div className='d-inline-flex p-2'> */}
+                        <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                            <form className="card-body">
+
+                                <div className='d-flex justify-content-between'>
+                                    <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Course {index + 1}</h3>
+                                    {disabled.course && (
+                                        <div >
+                                            <button onClick={(e) => setDisabled(prev => ({ ...prev, course: false }))} className="btn btn-danger">Edit</button>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <fieldset disabled={disabled.course}>
+
+                                    <div className='row form-row'>
+
+                                        <div className='col-md-6'>
+                                            <div className="card-body">
+                                                <div className="flex-nowrap form-floating">
+                                                    <input
+                                                        id={index + 'cn'}
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder='Name'
+                                                        autoComplete='off'
+                                                        value={course.name}
+                                                        onChange={(e) =>
+                                                            setCourses(prev => {
+                                                                prev[index].name = e.target.value
+                                                                return [...prev]
+                                                            })}
+                                                        required
+                                                    />
+                                                    <label htmlFor={index + 'cn'}>Name</label>
+                                                </div>
+                                            </div>
+
+                                            <div className="card-body">
+                                                <div className="flex-nowrap form-floating">
+                                                    <input
+                                                        id={index + 'cd'}
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder='Duration'
+                                                        autoComplete='off'
+                                                        value={course.duration}
+                                                        onChange={(e) =>
+                                                            setCourses(prev => {
+                                                                prev[index].duration = e.target.value
+                                                                return [...prev]
+                                                            })}
+                                                        required
+                                                    />
+                                                    <label htmlFor={index + 'cd'}>Duration</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className='col-md-6'>
+                                            <div className="card-body">
+                                                <div className="flex-nowrap form-floating">
+                                                    <input
+                                                        id={index + 'cs'}
+                                                        className="form-control"
+                                                        type="text"
+                                                        placeholder='Specialization'
+                                                        autoComplete='off'
+                                                        value={course.specialization}
+                                                        onChange={(e) =>
+                                                            setCourses(prev => {
+                                                                prev[index].specialization = e.target.value
+                                                                return [...prev]
+                                                            })}
+                                                        required
+                                                    />
+                                                    <label htmlFor={index + 'cs'}>Specialization</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div className='d-inline-flex'>
+                                        <div className="card-body">
+                                            <button id={index + 'cbs'} className="btn btn-success" onClick={handleCourse}>edit</button>
+                                        </div>
+
+                                        <div className="card-body">
+                                            <button id={index + 'cbd'} className="btn btn-danger" onClick={deleteCourse}>delete</button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+
+                            </form>
+                        </div>
+                        {/* </div> */}
                     </div>
+                )
+            })}
+
+            {/* New course */}
+            <div className='d-flex justify-content-center m-3'>
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
+
+                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">New Course</h3>
+                        <div className='row form-row'>
+
+                            <div className='col-md-6'>
+                                <div className="card-body">
+                                    <div className="flex-nowrap form-floating">
+                                        <input
+                                            id='cn'
+                                            className="form-control"
+                                            type="text"
+                                            placeholder='Name'
+                                            autoComplete='off'
+                                            value={newCourse.name}
+                                            onChange={(e) => setNewCourse(prev => ({ ...prev, name: e.target.value }))}
+                                            required
+                                        />
+                                        <label htmlFor='cn'>Name</label>
+                                    </div>
+                                </div>
+
+                                <div className="card-body">
+                                    <div className="flex-nowrap form-floating">
+                                        <input
+                                            id='cd'
+                                            className="form-control"
+                                            type="text"
+                                            placeholder='Duration'
+                                            autoComplete='off'
+                                            value={newCourse.duration}
+                                            onChange={(e) => setNewCourse(prev => ({ ...prev, duration: e.target.value }))}
+                                            required
+                                        />
+                                        <label htmlFor='cd'>Duration</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className='col-md-6'>
+                                <div className="card-body">
+                                    <div className="flex-nowrap form-floating">
+                                        <input
+                                            id='cs'
+                                            className="form-control"
+                                            type="text"
+                                            placeholder='Specialization'
+                                            autoComplete='off'
+                                            value={newCourse.specialization}
+                                            onChange={(e) => setNewCourse(prev => ({ ...prev, specialization: e.target.value }))}
+                                            required
+                                        />
+                                        <label htmlFor='cs'>Specialization</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div className="card-body">
+                            <button className="btn btn-success" onClick={handleNewCourse}>submit</button>
+                        </div>
+
+                    </form>
+                    {/* </div> */}
                 </div>
             </div>
 
             {/* Profile */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
 
-                            <h2>Profile</h2>
-                            <div className='d-inline-flex align-items-center'>
-                                {profile && <img src={profile} height={'100'} alt='profile' />}
-                                <div className="card-body">
-                                    <div className="flex-nowrap">
-                                        <label htmlFor="profile" className="form-label"><b>Logo</b></label>
-                                        <input
-                                            className="form-control"
-                                            type="file"
-                                            id="profile"
-                                            name='profile'
-                                        />
-                                    </div>
-                                    <div className='d-flex flex-row'>
-                                        <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label>
-                                        <button className="btn btn-success m-2" onClick={handleLogo}>upload</button>
+                        <   h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Profile</h3>                           
+                            <div className='form-row row'>
+
+                                <div className='col-md-3'>
+                                    <div className='card-body'>
+                                        {profile && <img className="rounded-circle " src={profile} height={'120'} width={'120'} alt='profile' />}
                                     </div>
                                 </div>
+                                <div className="col-md-9">
+                                    <div className='card-body'>
+                                        <div className="flex-nowrap">
+                                            <label htmlFor="profile" className="form-label"><b>Change Profile pic</b> (File should be less than 2mb and
+                                                only jpeg, jpg and png's allowed)</label>
+                                            <input
+                                                className="form-control"
+                                                type="file"
+                                                id="profile"
+                                                name='profile'
+                                            />
+                                        </div>
+                                        {/* <div className='d-flex flex-row'> */}
+                                        {/* <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label> */}
+                                        <button className="btn btn-primary mt-3" onClick={handleLogo}>upload</button>
+                                        {/* </div> */}
+                                    </div>
+                                </div>
+
                             </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
+                {/* </div> */}
             </div>
 
             {/* Account */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
-                        <form className="card-body">
+                {/* <div className='d-inline-flex p-2'> */}
+                <div className="card container h-100 shadow-2-strong p-4 shadow-sm mb-5" style={{ backgroundColor: '#f8f8f8' }}>
+                    <form className="card-body">
 
-                            <div className='d-flex justify-content-between'>
-                                <h2>Account</h2>
+                        <div className='d-flex justify-content-between'>
+                            <h3 class="mb-4 pb-2 pb-md-0 mb-md-4">Account</h3>
+                            {disabled.account && (
+                                <div >
+                                    <button onClick={(e) => setDisabled(prev => ({ ...prev, account: false }))} className="btn btn-danger">Edit</button>
+                                </div>
+                            )}
+                        </div>
 
-                                {disabled.account && (
-                                    <div >
-                                        <button onClick={(e) => setDisabled(prev => ({ ...prev, account: false }))} className="btn btn-danger">Edit</button>
-                                    </div>
-                                )}
-                            </div>
+                        <fieldset disabled={disabled.account}>
 
-                            <fieldset disabled={disabled.account}>
+                            <div className='row form-row'>
 
-                                <div className='d-flex flex-row'>
+                                <div className='col-md-6'>
 
-                                    <div>
-
-                                        <div className="card-body">
-                                            <div className="form-floating flex-nowrap">
-                                                <input
-                                                    className="form-control"
-                                                    type="text"
-                                                    placeholder='Username'
-                                                    id='username'
-                                                    minLength={8}
-                                                    maxLength={30}
-                                                    autoComplete='off'
-                                                    value={username}
-                                                    onChange={(e) => setUsername(e.target.value)}
-                                                    required
-                                                />
-                                                <label htmlFor='username'>Username</label>
-                                            </div>
+                                    <div className="card-body">
+                                        <div className="form-floating flex-nowrap">
+                                            <input
+                                                className="form-control"
+                                                type="text"
+                                                placeholder='Username'
+                                                id='username'
+                                                minLength={8}
+                                                maxLength={30}
+                                                autoComplete='off'
+                                                value={username}
+                                                onChange={(e) => setUsername(e.target.value)}
+                                                required
+                                            />
+                                            <label htmlFor='username'>Username</label>
                                         </div>
-
-                                        <div className="card-body">
-                                            <button onClick={handleUsername} className="btn btn-success">edit</button>
-                                        </div>
-
                                     </div>
 
-                                    <div>
-
-                                        <div className="card-body">
-                                            <div className="form-floating flex-nowrap">
-                                                <input
-                                                    className="form-control"
-                                                    type="password"
-                                                    id='prevPassword'
-                                                    placeholder='Previous password'
-                                                    value={prevPassword}
-                                                    min={8}
-                                                    onChange={(e) => setPrevPassword(e.target.value)}
-                                                    required
-                                                />
-                                                <label htmlFor='prevPassword'>Previous password</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <div className="form-floating flex-nowrap">
-                                                <input
-                                                    className="form-control"
-                                                    type="password"
-                                                    id='newPassword'
-                                                    placeholder='New password'
-                                                    value={newPassword}
-                                                    min={8}
-                                                    onChange={(e) => setNewPassword(e.target.value)}
-                                                    required
-                                                />
-                                                <label htmlFor='newPassword'>New password</label>
-                                            </div>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <button onClick={handlePassword} className="btn btn-success">edit</button>
-                                        </div>
-
+                                    <div className="card-body">
+                                        <button onClick={handleUsername} className="btn btn-success">edit</button>
                                     </div>
 
                                 </div>
 
-                            </fieldset>
+                                <div className='col-md-6'>
 
-                        </form>
-                    </div>
+                                    <div className="card-body">
+                                        <div className="form-floating flex-nowrap">
+                                            <input
+                                                className="form-control"
+                                                type="password"
+                                                id='prevPassword'
+                                                placeholder='Previous password'
+                                                value={prevPassword}
+                                                min={8}
+                                                onChange={(e) => setPrevPassword(e.target.value)}
+                                                required
+                                            />
+                                            <label htmlFor='prevPassword'>Previous password</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <div className="form-floating flex-nowrap">
+                                            <input
+                                                className="form-control"
+                                                type="password"
+                                                id='newPassword'
+                                                placeholder='New password'
+                                                value={newPassword}
+                                                min={8}
+                                                onChange={(e) => setNewPassword(e.target.value)}
+                                                required
+                                            />
+                                            <label htmlFor='newPassword'>New password</label>
+                                        </div>
+                                    </div>
+
+                                    <div className="card-body">
+                                        <button onClick={handlePassword} className="btn btn-success">edit</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </fieldset>
+
+                    </form>
                 </div>
+                {/* </div> */}
             </div>
 
         </>

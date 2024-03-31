@@ -148,17 +148,17 @@ const CollegeRegister = () => {
 
             {/* Institution */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#f8f8f8' }}>
                         <form className="card-body">
 
                             <fieldset disabled={disabled.institution}>
 
                                 <h2>Institution</h2>
 
-                                <div className='d-flex flex-row'>
+                                <div className='row form-row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -192,7 +192,7 @@ const CollegeRegister = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -236,22 +236,22 @@ const CollegeRegister = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Principal */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#f8f8f8' }}>
                         <form className="card-body">
 
                             <fieldset disabled={disabled.principal}>
 
                                 <h2>Principal</h2>
 
-                                <div className='d-flex flex-row'>
+                                <div className='row form-row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -285,7 +285,7 @@ const CollegeRegister = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -329,22 +329,22 @@ const CollegeRegister = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Placement */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-smard" style={{ backgroundColor: '#f8f8f8' }}>
                         <form className="card-body">
 
                             <fieldset disabled={disabled.placement}>
 
                                 <h2>Placement</h2>
 
-                                <div className='d-flex flex-row'>
+                                <div className='row form-row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -378,7 +378,7 @@ const CollegeRegister = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -422,12 +422,12 @@ const CollegeRegister = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Course */}
             <div className='d-flex justify-content-center m-3'>
-                <div className='d-inline-flex p-2'>
+                {/* <div className='d-inline-flex p-2'> */}
                     <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
                         <form className="card-body">
 
@@ -435,9 +435,9 @@ const CollegeRegister = () => {
 
                                 <h2>Course</h2>
 
-                                <div className='d-flex flex-row'>
+                                <div className='row form-row'>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -471,7 +471,7 @@ const CollegeRegister = () => {
                                         </div>
                                     </div>
 
-                                    <div>
+                                    <div className='col-md-6'>
                                         <div className="card-body">
                                             <div className="flex-nowrap form-floating">
                                                 <input
@@ -507,36 +507,45 @@ const CollegeRegister = () => {
 
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
             </div>
 
             {/* Profile */}
             <div className='d-flex justify-content-center align-items-end m-3'>
-                <div className='d-inline-flex p-2'>
-                    <div className="card" style={{ backgroundColor: '#f8f8f8' }}>
+                {/* <div className='d-inline-flex p-2'> */}
+                    <div className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ backgroundColor: '#f8f8f8' }}>
                         <form className="card-body">
 
                             <h2>Profile</h2>
 
-                            <div className="card-body">
-                                <div className="flex-nowrap">
-                                    <label htmlFor="profile" className="form-label"><b>Logo</b></label>
+                            <div className="form-row row mb-4">
+                                <div className="form-group col-md-9">
+                                    <label htmlFor="profile" className="form-label">
+                                        <b>Profile pic </b>
+                                        (File should be less than 2mb and
+                                        only jpeg, jpg and png's allowed)
+                                    </label>
                                     <input
-                                        className="form-control"
+                                        className="form-control mt-lg-4"
                                         type="file"
                                         id="profile"
-                                        name='profile'
+                                        name="profile"
                                     />
                                 </div>
-                                <div className='d-flex flex-row'>
-                                    <label className="form-label fs-6">File should be lessthan 2 mb and<br /> only jpeg, jpg and png's allwoed</label>
-                                    <button className="btn btn-success m-2" onClick={handleLogo}>upload</button>
+                                <div className="form-group col-md-2 mt-4 mt-md-5">
+                                <button
+                                        className="btn btn-primary m-2"
+                                        onClick={handleLogo}
+                                    >
+                                        upload
+                                    </button>   
                                 </div>
                             </div>
 
+
                         </form>
                     </div>
-                </div>
+                {/* </div> */}
 
                 <div className='d-inline-flex p-2'>
                     <Link className="btn btn-primary" to="/college">Home</Link>

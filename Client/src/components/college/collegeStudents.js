@@ -24,15 +24,15 @@ const CollegeStudents = () => {
     }, [axios, id]);
 
     return (
-        <div className='d-flex flex-column justify-content-center mx-5 my-2'>
+        <div className='d-flex flex-column justify-content-center align-items-center mx-5 my-2'>
 
             <div>
                 <div>
-                    <h1>{course}</h1>
+                    <h1 className='text-center my-4 mb-5'>{course}</h1>
                 </div>
 
                 {students.map((student, index) => (
-                    <section key={index} className="card mx-5 p-3" style={{ width: '38rem' }}>
+                    <section key={index} className="card container mx-5 p-3 overflow-auto mb-5 shadow-sm" style={{ width: '38rem', maxHeight: '40rem', scrollbarWidth: 'thin'}}>
 
                         <section className="my-2">
                             <div className="container">

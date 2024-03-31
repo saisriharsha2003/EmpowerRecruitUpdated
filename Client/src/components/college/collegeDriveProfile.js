@@ -36,13 +36,13 @@ const CollegeDriveProfile = () => {
     return (
         <div className='d-flex justify-content-center align-items-center my-5'>
 
-            <section className="card mx-5 p-3" style={{ width: '38rem' }}>
+            <section className="card container mx-5 p-3 overflow-auto shadow pb-4" style={{ width: '40rem', maxHeight: '55rem', scrollbarWidth: 'thin'}}>
 
                 <section className="mb-3">
                     <div className="container">
                         <div className="row">
                             <div>
-                                <h1>Job profile</h1>
+                                <h1 className='my-1'>Job profile</h1>
                             </div>
                         </div>
                     </div>

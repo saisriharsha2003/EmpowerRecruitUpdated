@@ -38,7 +38,7 @@ const CollegeCompanyProfile = () => {
         <>
             <div className='d-flex justify-content-center align-items-center my-5'>
 
-                <section className="card mx-5 p-3" style={{ width: '30rem' }}>
+                <section className="card container-auto mx-5 p-4 overflow-auto shadow-sm" style={{maxHeight: '40rem', scrollbarWidth: 'thin'}}>
 
                     <section className="mb-3">
                         <div className="container">

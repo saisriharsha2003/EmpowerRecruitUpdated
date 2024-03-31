@@ -134,21 +134,21 @@ const RecruiterDashboard = () => {
         <>
             <div className='d-flex flex-column ml-3'>
 
-            <div className="welcome-container my-5 mb-4 px-0 mx-0">
+                <div className="welcome-container my-5 mb-4 px-0 mx-0">
                     <div className="welcome-content d-flex flex-row justify-content-center align-items-center p-3 shadow">
-                        <div className="profile-container pe-3"> 
+                        <div className="profile-container pe-3">
                             {profile ? (
-                                <img className="profile-image mx-auto d-block" src={profile} height={'125'} alt='' /> 
+                                <img className="profile-image mx-auto d-block" src={profile} height={'125'} alt='' />
                             ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="155" height="155" fill="#0f172a" className="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="155" height="155" fill="#0f172a" className="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path fillRule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                </svg>
                             )}
                         </div>
                         <div className="welcome-message text-center"> {/* Add text-center class */}
                             <h2 className="welcome-title">Welcome back, {username}</h2>
-                
+
                         </div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@ const RecruiterDashboard = () => {
                             </div>
                         </div>
                         <div className='col-md-6 col-sm-12'>
-                            <div className="card m-3 box1 shadow profile-container"  onClick={() => navigate('/user/recruiter/applications')} >
+                            <div className="card m-3 box1 shadow profile-container" onClick={() => navigate('/user/recruiter/applications')} >
                                 <div className="card-body">
                                     <h3 className="card-title">Jobs rejected</h3>
                                     <h3 className="mb-2" style={{ color: '#ef4444' }}>{applicantsRejected}</h3>
@@ -182,7 +182,7 @@ const RecruiterDashboard = () => {
                             </div>
                         </div>
                         <div className='col-md-6 col-sm-12'>
-                            <div className="card m-3 box1 shadow profile-container"  onClick={() => navigate('/user/recruiter/posted')} >
+                            <div className="card m-3 box1 shadow profile-container" onClick={() => navigate('/user/recruiter/posted')} >
                                 <div className="card-body">
                                     <h3 className="card-title">Job Openings</h3>
                                     <h3 className="mb-2" style={{ color: '#28a745' }}>{applicants}</h3>
@@ -193,36 +193,36 @@ const RecruiterDashboard = () => {
                     </div>
 
                 </div>
-                
+
                 <div className='row mx-2 mb-5'>
-                <div className='col-md-6 col-sm-12'>
-                    <div className='card m-4 shadow-sm' height="1000px" width="1000px">
-                        <div className="card-body my-2 px-4 py-2">
-                            <h2 className="card-title mb-3 mb-4 pb-1 mt-2 pb-md-0 mb-md-3">Company Analytics</h2>
-                            {/* <div className='card shadow'> */}
-                            <Bar data={barChartData} options={barChartOptions} className='mb-2 p-2' />
-                            {/* </div> */}
+                    <div className='col-md-6 col-sm-12'>
+                        <div className='card m-4 shadow-sm' height="1000px" width="1000px">
+                            <div className="card-body my-2 px-4 py-2">
+                                <h2 className="card-title mb-3 mb-4 pb-1 mt-2 pb-md-0 mb-md-3">Company Analytics</h2>
+                                {/* <div className='card shadow'> */}
+                                <Bar data={barChartData} options={barChartOptions} className='mb-2 p-2' />
+                                {/* </div> */}
+                            </div>
+
+
+
                         </div>
+                    </div>
+                    <div className='col-md-6 col-sm-12'>
+                        <div className='card m-4 shadow-sm' height="1000px" width="1000px">
+                            <div className="card-body my-2 px-4 py-2">
+                                <h2 className="card-title mb-3 mt-2 mb-4 pb-1 pb-md-0 mb-md-3">Recruitment Analytics</h2>
+                                {/* <div className='card shadow'> */}
+                                <PolarArea data={doughnutChartData} options={doughnutChartOptions} className='mb-2 p-2' />
+                                {/* </div> */}
+                            </div>
 
 
-
+                        </div>
                     </div>
                 </div>
-                <div className='col-md-6 col-sm-12'>
-                    <div className='card m-4 shadow-sm' height="1000px" width="1000px">
-                        <div className="card-body my-2 px-4 py-2">
-                            <h2 className="card-title mb-3 mt-2 mb-4 pb-1 pb-md-0 mb-md-3">Recruitment Analytics</h2>
-                            {/* <div className='card shadow'> */}
-                            <PolarArea data={doughnutChartData} options={doughnutChartOptions} className='mb-2 p-2' />
-                            {/* </div> */}
-                        </div>
 
 
-                    </div>
-                </div>
-            </div>
-
-                
             </div>
 
         </>

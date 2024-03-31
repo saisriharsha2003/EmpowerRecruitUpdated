@@ -33,8 +33,8 @@ const CollegeSections = () => {
                 <div className='d-flex flex-row justify-content-evenly mx-5 my-2'>
 
                     {courses.map((course, index) => (
-                        <div key={index} className="card text-center my-2 px-4 py-2" style={{ width: '10rem' }}>
-                            <Link to={course.name + '/' + course._id} className='nav-link'>
+                        <div key={index} className="card container-auto shadow text-center my-2 mx-2 px-4 py-2" style={{ width: '10rem' }}>
+                            <Link to={course.name + '/' + course._id} className='nav-link my-4'>
                                 <div className='card-body p-2'>
                                     <b>{course.name}</b>
                                 </div>

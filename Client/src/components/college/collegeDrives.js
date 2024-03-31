@@ -59,47 +59,45 @@ const CollegeDrives = () => {
 
                 <div>
                     <div>
-                        <h1>Past drives</h1>
+                        <h1 className='text-center mt-2'>Past drives</h1>
                     </div>
 
                     {pastDrives.map((drive, index) => (
-                        <div key={index} className="card my-2 px-4 py-2" style={{ width: '53rem' }}>
-                            <div className='card-body p-2'>
-                                <h5 className="card-title">{drive.jobRole}</h5>
+                        <div key={index} className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ width: '53rem' }}>
+                            <div className='d-flex justify-content-between'>
+                                <h5 className="card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3">{drive.jobRole}</h5>
+                                <h5 className="card-subtitle mb-2 text-muted">{drive.companyName}</h5>
                             </div>
-                            <div className='card-body p-2'>
-                                <h6 className="card-subtitle mb-2 text-muted">{drive.companyName}</h6>
-                            </div>
-                            <div className='card-body p-2 tect-wrap' style={{ width: '50rem' }}>
+                            <div className='card-body p-2 text-wrap' style={{ width: '50rem' }}>
                                 <p className="card-text">{drive.description}</p>
                             </div>
                             <div className='card-body p-2'>
-                                <Link className="btn btn-primary" to={drive._id} role="button">view</Link>
+                                <Link className="btn btn-primary mt-2" to={drive._id} role="button">view</Link>
                             </div>
                         </div>
                     ))}
                 </div>
-
-                <div>
+                <div className="d-flex justify-content-center">
+                    <div className="border-top mt-5 mb-1 shadow" style={{ borderTop: "1px solid rgba(10, 10, 10, 0.7)", width: "75%" }}></div>
+                    </div>
+                <div className='mb-5'>
                     <div>
-                        <h1>Upcoming drives</h1>
+                        <h1 className='text-center mt-4' >Upcoming drives</h1>
                     </div>
 
                     {upcomingDrives.map((drive, index) => (
-                        <div key={index} className="card my-2 px-4 py-2" style={{ width: '53rem' }}>
-                            <div className='card-body p-2'>
-                                <h5 className="card-title">{drive.jobRole}</h5>
+                        <div key={index} className="card container h-100 shadow-2-strong mt-5 p-4 shadow-sm" style={{ width: '53rem' }}>
+                            <div className='d-flex justify-content-between'>
+                                <h5 className="card-title mb-3 mb-4 pb-1 pb-md-0 mb-md-3">{drive.jobRole}</h5>
+                                <h5 className="card-subtitle text-muted">{drive.companyName}</h5>
                             </div>
-                            <div className='card-body p-2'>
-                                <h6 className="card-subtitle mb-2 text-muted">{drive.companyName}</h6>
-                            </div>
-                            <div className='card-body p-2 tect-wrap' style={{ width: '50rem' }}>
+                            <div className='card-body p-2 text-wrap' style={{ width: '50rem' }}>
                                 <p className="card-text">{drive.description}</p>
                             </div>
                             <div className='card-body p-2' style={{ width: '10rem' }}>
                                 <div className='d-flex justify-content-between'>
-                                    <Link className="btn btn-primary" to={drive._id} role="button">view</Link>
-                                    <button id={drive._id} className="btn btn-dark" onClick={handleApproval}>Approve</button>
+                                    <Link className="btn btn-primary mt-2" to={drive._id} role="button">view</Link>
+                                    <button id={drive._id} className="btn btn-dark mt-2 mx-3" onClick={handleApproval}>Approve</button>
                                 </div>
                             </div>
                         </div>
