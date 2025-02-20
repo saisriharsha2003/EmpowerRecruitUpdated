@@ -162,8 +162,7 @@ Ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone "https://github.com/saisriharsha2003/note-nexus"
-cd note-nexus
+git clone "https://github.com/saisriharsha2003/EmpowerRecruitUpdated"
 ```
 
 ### 2. Install Dependencies
