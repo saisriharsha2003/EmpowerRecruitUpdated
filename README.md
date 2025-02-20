@@ -1,6 +1,6 @@
 # EmpowerRecruit
 
-EmpowerRecruit is a comprehensive recruitment platform built using the MERN stack, designed to streamline the hiring process for colleges, students, and recruiters. 
+EmpowerRecruit is a comprehensive recruitment platform built using the MERN stack, designed to streamline the hiring process for colleges, students, and recruiters. Recruiters can post jobs with job parsing for automated field entry, choose between global or college-specific postings, and utilize a job compatibility score to rank applicants. They can accept or reject applications, with status updates sent via email. Students can apply for jobs using resume parsing for seamless form filling, check their compatibility scores for job descriptions, and track their application statuses. Colleges can manage placement activities, approve drives, track placement statistics, handle student data, and coordinate with recruiters to optimize placement outcomes. Empower Recruit enhances efficiency, transparency, and engagement in the hiring process.
 
 ## Features
 
